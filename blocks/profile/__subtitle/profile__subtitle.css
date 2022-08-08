@@ -6,3 +6,15 @@
   line-height: 17px;
   text-align: center;
 }
+
+@media screen and (min-width: 880px) {
+  .profile__subtitle {
+    margin: 0;
+    font-size: 18px;
+    line-height: 22px;
+    grid-row: 1;
+    grid-column: 2;
+    text-align: start;
+    align-self: end;
+  }
+}

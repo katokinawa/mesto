@@ -3,3 +3,12 @@
   justify-content: center;
   align-items: baseline;
 }
+
+@media screen and (min-width: 880px) {
+  .profile__title-wrapper {
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: start;
+    white-space: pre-wrap;
+  }
+}
