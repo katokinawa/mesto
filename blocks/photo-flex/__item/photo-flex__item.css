@@ -4,9 +4,5 @@
   background: #FFF;
   border-radius: 10px;
   list-style-type: none;
-  margin-bottom: 20px;
-}
-
-.photo-flex__item:last-child {
-  margin-bottom: 0;
+  position: relative;
 }

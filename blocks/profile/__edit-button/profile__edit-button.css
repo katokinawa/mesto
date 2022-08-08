@@ -1,9 +1,4 @@
 .profile__edit-button {
   min-width: 18px;
   min-height: 18px;
-  border: 1px solid #FFFFFF;
-  background-image: url(../../../images/pencil.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 50% 50%;
 }
