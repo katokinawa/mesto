@@ -9,7 +9,7 @@
 @media screen and (min-width: 880px) {
   .profile {
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 150px repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 150px minmax(min-content, max-content) 1fr;
   }
 }
