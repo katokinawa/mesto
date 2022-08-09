@@ -7,11 +7,13 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/content/content.css);
-@import url(../blocks/form/form.css);
-@import url(../blocks/form/__close-button/form__close-button.css);
-@import url(../blocks/form/__popup/form__popup.css);
-@import url(../blocks/form/__title/form__title.css);
-@import url(../blocks/form/__subtitle/form__subtitle.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
+@import url(../blocks/popup/__popup/popup__container.css);
+@import url(../blocks/popup/__form-container/popup__form-container.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__subtitle/popup__subtitle.css);
+@import url(../blocks/popup/__save-button/popup__save-button.css);
 @import url(../blocks/form/__save-button/form__save-button.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css);
@@ -25,6 +27,7 @@
 @import url(../blocks/photo-flex/__list/photo-flex__list.css);
 @import url(../blocks/photo-flex/__item/photo-flex__item.css);
 @import url(../blocks/photo-flex/__image/photo-flex__image.css);
+@import url(../blocks/photo-flex/__title-wrapper/photo-flex__title-wrapper.css);
 @import url(../blocks/photo-flex/__title/photo-flex__title.css);
 @import url(../blocks/photo-flex/__like-button/photo-flex__like-button.css);
 @import url(../blocks/footer/footer.css);

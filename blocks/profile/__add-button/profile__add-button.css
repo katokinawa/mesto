@@ -5,6 +5,8 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 2px;
+  background-color: transparent;
+  border: 0;
 }
 
 @media screen and (min-width: 880px) {
@@ -17,4 +19,9 @@
     align-self: center;
     background-image: url(../../../images/add-button-150px.svg);
   }
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }

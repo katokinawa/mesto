@@ -12,21 +12,19 @@
         <div class="logo"></div>
       </header>
       <main class="content">
-        <section class="form content__form">
-          <div class="form__close-button"></div>
-          <div class="form__popup">
-            <h2 class="title form__title">Редактировать профиль</h2>
-            <form>
+        <section class="popup popup_opened content__popup">
+          <button type="button" name="close-button" class="popup__close-button"></button>
+          <div class="popup__container">
+            <h2 class="title popup__title">Редактировать профиль</h2>
+            <form class="popup__form-container">
               <label>
-                <input type="text" id="first-name" class="form__subtitle" placeholder="Жак-Ив Кусто">
+                <input type="text" id="first-name" class="popup__subtitle" placeholder="Имя">
+              </label>
+              <label>
+                <input type="text" id="description" class="popup__subtitle" placeholder="О себе">
               </label>
             </form>
-            <form>
-              <label>
-                <input type="text" id="description" class="form__subtitle" placeholder="Исследователь океана">
-              </label>
-            </form>
-            <div class="form__save-button"></div>
+            <button type="button" name="save-button" class="popup__save-button" form="popup__form-container">Сохранить</button>
           </div>
         </section>
         <section class="profile content__profile">
@@ -35,16 +33,16 @@
           </div>
           <div class="profile__title-wrapper">
             <h1 class="title profile__title">Жак-Ив Кусто</h1>
-            <div class="profile__edit-button"></div>
+            <button type="button" name="edit-button" class="profile__edit-button"></button>
           </div>
           <p class="subtitle profile__subtitle">Исследователь океана</p>
-          <div class="profile__add-button"></div>
+          <button type="button" name="add-button" class="profile__add-button"></button>
         </section>
         <section class="photo-flex content__photo-flex">
           <ul class="photo-flex__list">
             <li class="photo-flex__item">
               <img src="./images/karachaevsk.png" alt="" class="photo-flex__image">
-              <img src="./images/like-button.svg" class="photo-flex__like-button">
+              <button type="button" name="like-button" class="photo-flex__like-button photo-flex__like-button_active"></button>
               <h2 class="title photo-flex__title">Карачаевск</h2>
             </li>
             <li class="photo-flex__item">
@@ -70,7 +68,10 @@
             <li class="photo-flex__item">
               <img src="./images/karachaevsk.png" alt="" class="photo-flex__image">
               <img src="./images/like-button.svg" class="photo-flex__like-button">
-              <h2 class="title photo-flex__title">Карачаевск</h2>
+              <div class="photo-flex__title-wrapper">
+                <h2 class="title photo-flex__title">Карачаево-Черкасово</h2>
+              </div>
+
             </li>
           </ul>
         </section>
