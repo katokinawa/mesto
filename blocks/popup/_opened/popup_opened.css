@@ -4,4 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: end;
+  position: fixed;
+}
+
+@media screen and (min-width: 880px) {
+  .popup_opened {
+    width: 415px;
+    left: 440px;
+    top: 155px;
+  }
 }

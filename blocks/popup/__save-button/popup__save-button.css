@@ -16,3 +16,13 @@
   opacity: 0.8;
   border-radius: 2px;
 }
+
+@media screen and (min-width: 880px) {
+  .popup__save-button {
+    background-image: url(../../../images/save-button-880px.svg);
+    width: 358px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

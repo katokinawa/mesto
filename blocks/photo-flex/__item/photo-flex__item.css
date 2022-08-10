@@ -4,5 +4,10 @@
   background: #FFF;
   border-radius: 10px;
   list-style-type: none;
-  position: relative;
+  display: grid;
+  grid-template-rows: 282px 79px;
+  grid-template-columns: 1fr 62px;
+  grid-template-areas:
+  "img img"
+  "title like-butt";
 }
