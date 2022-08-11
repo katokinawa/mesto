@@ -12,19 +12,19 @@
         <div class="logo"></div>
       </header>
       <main class="content">
-        <section class="popup popup_opened content__popup">
+        <section id="popup" class="popup content__popup">
           <button type="button" id="close-button" class="popup__close-button"></button>
           <div class="popup__container">
-            <h2 class="title popup__title">Редактировать профиль</h2>
-            <form class="popup__form-container">
+            <h1 class="title popup__title">Редактировать профиль</h1>
+            <form class="popup__form-container" type="sumbit">
               <label>
-                <input type="text" id="first-name" name="first-name" class="popup__subtitle" value="Жак-Ив Кусто">
+                <input type="text" id="nameInput" name="nameInput" class="popup__subtitle input_title">
               </label>
               <label>
-                <input type="text" id="description" name="description" class="popup__subtitle" value="Исследователь океана">
+                <input type="text" id="jobInput" name="jobInput" class="popup__subtitle input_subtitle">
               </label>
+              <button type="button" id="save-button" class="popup__save-button">Сохранить</button>
             </form>
-            <button type="button" id="save-button" class="popup__save-button" form="popup__form-container">Сохранить</button>
           </div>
         </section>
         <section class="profile content__profile">
@@ -32,7 +32,7 @@
             <img src="./images/profile-avatar.png" class="profile__avatar">
           </div>
           <div class="profile__title-wrapper">
-            <h1 class="title profile__title">Жак-Ив Кусто</h1>
+            <p class="title profile__title">Жак-Ив Кусто</p>
             <button type="button" id="edit-button" class="profile__edit-button"></button>
           </div>
           <p class="subtitle profile__subtitle">Исследователь океана</p>
@@ -40,7 +40,7 @@
         </section>
         <section class="photo-flex content__photo-flex">
           <ul class="photo-flex__list">
-            <li class="photo-flex__item">
+            <li class="photo-flex__item">c
               <img src="./images/karachaevsk.png" alt="" class="photo-flex__image">
               <button type="button" id="like-button" class="photo-flex__like-button photo-flex__like-button_active"></button>
               <h2 class="title photo-flex__title">Карачаевск</h2>
@@ -77,5 +77,6 @@
         <p class="subtitle footer__subtitle">© 2020 Mesto Russia</p>
       </footer>
     </div>
+    <script src="./blocks/scripts/index.js"></script>
 </body>
 </html>
