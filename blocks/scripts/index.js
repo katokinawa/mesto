@@ -7,7 +7,7 @@ let saveButton = document.querySelector('.popup__save-button');
 let likeButton = document.querySelector('.photo-flex__like-button')
 
 /* form */
-let formElement = document.querySelector('.popup__form-container');
+let formElement = document.querySelector('#form');
 let nameInput = document.querySelector('#nameInput');
 let jobInput = document.querySelector('#jobInput');
 
@@ -21,18 +21,15 @@ let profileJob = document.querySelector('.profile__subtitle');
 function popupFormValue() {
   nameInput.setAttribute('value', profileName.textContent);
   jobInput.setAttribute('value', profileJob.textContent);
-  console.log('1');
 }
 
 function openPopup() {
   popupFormValue();
   popupShow.classList.add('popup_opened');
-  console.log('2');
 }
 
 function closePopup() {
   popupShow.classList.remove('popup_opened');
-  console.log('3');
 }
 
 editButton.addEventListener('click', openPopup);
@@ -41,9 +38,8 @@ saveButton.addEventListener('click', closePopup)
 
 function formSumbitHandler(evt) {
   evt.preventDefault();
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-  console.log('4');
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closePopup();
 }
-
 formElement.addEventListener('sumbit', formSumbitHandler);

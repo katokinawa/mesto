@@ -16,14 +16,14 @@
           <button type="button" id="close-button" class="popup__close-button"></button>
           <div class="popup__container">
             <h1 class="title popup__title">Редактировать профиль</h1>
-            <form class="popup__form-container" type="sumbit">
+            <form type="sumbit" id="form" class="popup__form-container">
               <label>
-                <input type="text" id="nameInput" name="nameInput" class="popup__subtitle input_title">
+                <input type="text" id="nameInput" name="nameInput" class="popup__subtitle">
               </label>
               <label>
-                <input type="text" id="jobInput" name="jobInput" class="popup__subtitle input_subtitle">
+                <input type="text" id="jobInput" name="jobInput" class="popup__subtitle">
               </label>
-              <button type="button" id="save-button" class="popup__save-button">Сохранить</button>
+              <button type="sumbit" id="save-button" class="popup__save-button">Сохранить</button>
             </form>
           </div>
         </section>
@@ -32,7 +32,7 @@
             <img src="./images/profile-avatar.png" class="profile__avatar">
           </div>
           <div class="profile__title-wrapper">
-            <p class="title profile__title">Жак-Ив Кусто</p>
+            <h1 class="title profile__title">Жак-Ив Кусто</h1>
             <button type="button" id="edit-button" class="profile__edit-button"></button>
           </div>
           <p class="subtitle profile__subtitle">Исследователь океана</p>
