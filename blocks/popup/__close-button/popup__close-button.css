@@ -5,6 +5,9 @@
   background-image: url(../../../images/close-button.svg);
   border: 0;
   background-color: transparent;
+  position: absolute;
+  right: 0;
+  top: -35px;
 }
 
 .popup__close-button:hover {
@@ -18,7 +21,7 @@
     height: 32px;
     background-image: url(../../../images/close-button-880px.svg);
     position: absolute;
-    top: 0;
+    top: -40px;
     right: -40px;
   }
 }
