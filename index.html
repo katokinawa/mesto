@@ -13,9 +13,7 @@
       </header>
       <main class="content">
         <section class="profile content__profile">
-          <div class="profile__avatar-wrapper">
-            <img src="./images/profile-avatar.png" class="profile__avatar">
-          </div>
+          <div class="profile__avatar"></div>
           <div class="profile__title-wrapper">
             <h1 class="title profile__title">Жак-Ив Кусто</h1>
             <button type="button" id="edit-button" class="profile__edit-button"></button>
@@ -26,33 +24,33 @@
         <section class="photo-flex content__photo-flex">
           <ul class="photo-flex__list">
             <li class="photo-flex__item">
-              <img src="./images/karachaevsk.png" alt="" class="photo-flex__image">
-              <button type="button" id="like-button" class="photo-flex__like-button photo-flex__like-button_active"></button>
+              <img src="./images/karachaevsk.png" alt="Здание, позади горы." class="photo-flex__image">
+              <button type="button" class="photo-flex__like-button photo-flex__like-button_active"></button>
               <h2 class="title photo-flex__title">Карачаевск</h2>
             </li>
             <li class="photo-flex__item">
-              <img src="./images/elbrus.png" alt="" class="photo-flex__image">
-              <button type="button" id="like-button" class="photo-flex__like-button photo-flex__like-button_active"></button>
+              <img src="./images/elbrus.png" alt="Поле, эльбрус на горизонте. Закат." class="photo-flex__image">
+              <button type="button" class="photo-flex__like-button photo-flex__like-button_active"></button>
               <h2 class="title photo-flex__title">Гора Эльбрус</h2>
             </li>
             <li class="photo-flex__item">
-              <img src="./images/dombai.png" alt="" class="photo-flex__image">
-              <button type="button" id="like-button" class="photo-flex__like-button photo-flex__like-button_active"></button>
+              <img src="./images/dombai.png" alt="Хребет Домбай." class="photo-flex__image">
+              <button type="button" class="photo-flex__like-button photo-flex__like-button_active"></button>
               <h2 class="title photo-flex__title">Домбай</h2>
             </li>
             <li class="photo-flex__item">
-              <img src="./images/elbrus.png" alt="" class="photo-flex__image">
-              <button type="button" id="like-button" class="photo-flex__like-button photo-flex__like-button_active"></button>
+              <img src="./images/elbrus.png" alt="Поле, эльбрус на горизонте. Закат." class="photo-flex__image">
+              <button type="button" class="photo-flex__like-button photo-flex__like-button_active"></button>
               <h2 class="title photo-flex__title">Гора Эльбрус</h2>
             </li>
             <li class="photo-flex__item">
-              <img src="./images/dombai.png" alt="" class="photo-flex__image">
-              <button type="button" id="like-button" class="photo-flex__like-button photo-flex__like-button_active"></button>
+              <img src="./images/dombai.png" alt="Хребет Домбай." class="photo-flex__image">
+              <button type="button" class="photo-flex__like-button photo-flex__like-button_active"></button>
               <h2 class="title photo-flex__title">Домбай</h2>
             </li>
             <li class="photo-flex__item">
-              <img src="./images/karachaevsk.png" alt="" class="photo-flex__image">
-              <button type="button" id="like-button" class="photo-flex__like-button photo-flex__like-button_active"></button>
+              <img src="./images/karachaevsk.png" alt="Здание, позади горы." class="photo-flex__image">
+              <button type="button" class="photo-flex__like-button photo-flex__like-button_active"></button>
               <h2 class="title photo-flex__title">Карачаево-Черкасово</h2>
             </li>
           </ul>
@@ -62,11 +60,11 @@
         <p class="subtitle footer__subtitle">© 2020 Mesto Russia</p>
       </footer>
     </div>
-    <section id="popup" class="popup content__popup">
+    <section id="popup" class="popup">
       <div class="popup__container">
         <button type="button" id="close-button" class="popup__close-button"></button>
         <h2 class="title popup__title">Редактировать профиль</h2>
-        <form type="submit" id="form" class="popup__form-container">
+        <form id="form" class="popup__form-container">
           <label>
             <input type="text" id="nameInput" name="nameInput" class="popup__subtitle">
           </label>

@@ -2,6 +2,7 @@
   width: 22px;
   height: 19px;
   background-image: url(../../../images/like-button.svg);
+  background-repeat: no-repeat;
   border: 0;
   background-color: transparent;
   grid-area: like-butt;

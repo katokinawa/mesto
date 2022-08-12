@@ -2,6 +2,7 @@
   width: 18px;
   height: 18px;
   background-image: url(../../../images/edit-button-18px.svg);
+  background-repeat: no-repeat;
   background-color: transparent;
   border: 0;
 }

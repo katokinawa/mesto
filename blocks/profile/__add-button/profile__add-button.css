@@ -16,7 +16,6 @@
     grid-row: span 2;
     grid-column: 3;
     justify-self: end;
-    align-self: center;
     background-image: url(../../../images/add-button-150px.svg);
   }
 }

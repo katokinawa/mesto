@@ -9,7 +9,7 @@
 
 @media screen and (min-width: 880px) {
   .profile__subtitle {
-    margin: 17px 0 0;
+    margin: 7px 0 0;
     font-size: 18px;
     line-height: 22px;
     grid-row: 2;
