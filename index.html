@@ -22,7 +22,7 @@
           <button type="button" id="add-button" class="profile__add-button"></button>
         </section>
         <section class="photo-flex content__photo-flex">
-          <ul class="photo-flex__list">
+          <ul id="photoFlexContainer" class="photo-flex__list">
             <li class="photo-flex__item">
               <img src="./images/karachaevsk.png" alt="Здание, позади горы." class="photo-flex__image">
               <button type="button" class="photo-flex__like-button"></button>
@@ -84,12 +84,19 @@
             <input type="text" id="itemNameInput" name="itemNameInput" class="popup__subtitle popup__subtitle_color" placeholder="Название">
           </label>
           <label>
-            <input type="text" id="itemUrlInput" name="itemUrlInput" class="popup__subtitle popup__subtitle_color" placeholder="Ссылка на картинку">
+            <input type="text" id="itemLinkInput" name="itemUrlInput" class="popup__subtitle popup__subtitle_color" placeholder="Ссылка на картинку">
           </label>
           <button type="submit" id="save-button" class="popup__save-button">Создать</button>
         </form>
       </div>
     </section>
+    <template id="photo-template">
+        <li id="container" class="photo-flex__item">
+          <img id="link" src="" alt="" class="photo-flex__image">
+          <button type="button" class="photo-flex__like-button"></button>
+          <h2 id="name" class="title photo-flex__title"></h2>
+        </li>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
