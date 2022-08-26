@@ -1,21 +1,22 @@
 /* button */
-let editButton = document.querySelector('.profile__edit-button');
-let closeButton = document.querySelectorAll('.popup__close-button')
-let addButton = document.querySelector('.profile__add-button');
-let saveButton = document.querySelectorAll('#save-button');
+const editButton = document.querySelector('.profile__edit-button');
+const closeButton = document.querySelectorAll('.popup__close-button')
+const addButton = document.querySelector('.profile__add-button');
+const saveButton = document.querySelectorAll('.popup__save-button');
 
 /* form */
-let formElement = document.querySelectorAll('#form');
-let nameInput = document.querySelector('#nameInput');
-let jobInput = document.querySelector('#jobInput');
-let itemNameInput = document.querySelector('#itemNameInput');
-let itemUrlInput = document.querySelector('#itemUrlInput');
+const formElement = document.querySelectorAll('.popup__form-container');
+const nameInput = document.querySelector('.name-input');
+const jobInput = document.querySelector('.job-input');
+const itemNameInput = document.querySelector('.item__name-input');
+const itemLinkInput = document.querySelector('.item__link-input');
 
 /* other */
-let popupShow = document.querySelectorAll('#popup')
-let profileName = document.querySelector('.profile__title');
-let profileJob = document.querySelector('.profile__subtitle');
-let photoFlexItem = document.querySelector('#photoFlexContainer');
+const popupShow = document.querySelectorAll('.popup')
+const profileName = document.querySelector('.profile__title');
+const profileJob = document.querySelector('.profile__subtitle');
+const photoFlexItem = document.querySelector('.photo-flex__list');
+const photoTemplate = document.querySelector('#photo-template').content;
 /* main js code */
 
 
@@ -44,6 +45,7 @@ closeButton[0].addEventListener('click', closePopup);
 closeButton[1].addEventListener('click', closePopup);
 addButton.addEventListener('click', openPopupAdd);
 
+
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -52,31 +54,6 @@ function formSubmitHandler(evt) {
 };
 
 formElement[0].addEventListener('submit', formSubmitHandler);
-
-function addPhotoItem(nameValue, linkValue) {
-  const photoTemplate = document.querySelector('#photo-template').content;
-  const photoElement = photoTemplate.querySelector('#container').cloneNode(true);
-  photoElement.querySelector('#name').textContent = nameValue;
-  photoElement.querySelector('#link').src = linkValue;
-  photoFlexItem.append(photoElement);
-
-};
-
-saveButton[1].addEventListener('click', function () {
-  const nameValue = document.querySelector('#itemNameInput');
-  const linkValue = document.querySelector('#itemLinkInput');
-  addPhotoItem(nameValue.value, linkValue.value);
-});
-
-
-function formSubmitHandlerPhoto(evt) {
-  evt.preventDefault();
-  closePopup();
-}
-formElement[1].addEventListener('submit', formSubmitHandlerPhoto);
-
-
-
 
 const initialCards = [
   {
@@ -104,3 +81,31 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+
+function addPhotoItem(name, link) {
+  const photoElement = photoTemplate.querySelector('#container').cloneNode(true);
+  photoElement.querySelector('#name').textContent = name;
+  photoElement.querySelector('#link').src = link;
+  photoElement.querySelector('#name').setAttribute('alt', name);
+  photoFlexItem.prepend(photoElement);
+};
+
+initialCards.forEach(function (item) {
+  addPhotoItem(item.name, item.link);
+  photoFlexItem.append(item);
+});
+
+saveButton[1].addEventListener('click', function () {
+  const name = itemNameInput;
+  const link = itemLinkInput;
+  addPhotoItem(name.value, link.value);
+});
+
+
+function formSubmitHandlerPhoto(evt) {
+  evt.preventDefault();
+  closePopup();
+}
+formElement[1].addEventListener('submit', formSubmitHandlerPhoto);
+
