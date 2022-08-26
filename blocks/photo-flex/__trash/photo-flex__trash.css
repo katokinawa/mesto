@@ -1,0 +1,15 @@
+.photo-flex__trash {
+  width: 18px;
+  height: 19px;
+  background-image: url(../../../images/trash.svg);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.photo-flex__trash:hover {
+  opacity: 0.5;
+}

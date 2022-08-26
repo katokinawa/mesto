@@ -86,14 +86,26 @@ const initialCards = [
 function addPhotoItem(name, link) {
   const photoElement = photoTemplate.querySelector('#container').cloneNode(true);
   const likeButton = photoElement.querySelector('.photo-flex__like-button');
+  const deleteButton = photoElement.querySelector('.photo-flex__trash');
+
+  // Присвоение значения новым айтемам
   photoElement.querySelector('#name').textContent = name;
   photoElement.querySelector('#link').src = link;
   photoElement.querySelector('#name').setAttribute('alt', name);
   photoFlexItem.prepend(photoElement);
 
+  // Кнопка лайка
   function likeButtonActive () {
     likeButton.classList.toggle('photo-flex__like-button_active')
-};
+  };
+
+  // Удаление карточки
+  function deletePhotoItem () {
+    photoElement.remove();
+  };
+  
+  // Слушатели для кнопки удаления и лайка
+  deleteButton.addEventListener('click', deletePhotoItem)
   likeButton.addEventListener('click', likeButtonActive)
 };
 

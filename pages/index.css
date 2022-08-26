@@ -28,6 +28,7 @@
 @import url(../blocks/photo-flex/__item/photo-flex__item.css);
 @import url(../blocks/photo-flex/__image/photo-flex__image.css);
 @import url(../blocks/photo-flex/__title/photo-flex__title.css);
+@import url(../blocks/photo-flex/__trash/photo-flex__trash.css);
 @import url(../blocks/photo-flex/__like-button/photo-flex__like-button.css);
 @import url(../blocks/photo-flex/__like-button/_active/photo-flex__like-button_active.css);
 @import url(../blocks/footer/footer.css);
