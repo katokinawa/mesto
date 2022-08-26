@@ -95,9 +95,9 @@ function addPhotoItem(name, link) {
 
 
   // Присвоение значения новым айтемам
-  const nameContent = photoElement.querySelector('#name').textContent = name;
-  const linkContent = photoElement.querySelector('#link').src = link;
-  const altContent  = photoElement.querySelector('#name').setAttribute('alt', name);
+  photoElement.querySelector('#name').textContent = name;
+  photoElement.querySelector('#link').src = link;
+  photoElement.querySelector('#link').alt = name;
   photoFlexItem.prepend(photoElement);
 
   // Кнопка лайка
