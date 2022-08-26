@@ -3,7 +3,7 @@
   height: 100%;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   display: flex;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   opacity: 0;

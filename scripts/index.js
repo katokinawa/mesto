@@ -24,28 +24,33 @@ function popupFormValue() {
   nameInput.setAttribute('value', profileName.textContent);
   jobInput.setAttribute('value', profileJob.textContent);
 };
-
+// Функции открытия попапа
 function openPopup() {
   popupFormValue();
   popupShow[0].classList.add('popup_opened');
 };
-
 function openPopupAdd() {
   popupShow[1].classList.add('popup_opened');
 };
+function openPopupImage() {
+  popupShow[2].classList.add('popup_opened');
+};
 
+// Функция закрытия попапа
 function closePopup() {
   popupShow[0].classList.remove('popup_opened');
   popupShow[1].classList.remove('popup_opened');
+  popupShow[2].classList.remove('popup_opened');
 };
 
-
+// Слушатели событий
 editButton.addEventListener('click', openPopup);
 closeButton[0].addEventListener('click', closePopup);
 closeButton[1].addEventListener('click', closePopup);
+closeButton[2].addEventListener('click', closePopup);
 addButton.addEventListener('click', openPopupAdd);
 
-
+// Функция отправки
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -88,10 +93,11 @@ function addPhotoItem(name, link) {
   const likeButton = photoElement.querySelector('.photo-flex__like-button');
   const deleteButton = photoElement.querySelector('.photo-flex__trash');
 
+
   // Присвоение значения новым айтемам
-  photoElement.querySelector('#name').textContent = name;
-  photoElement.querySelector('#link').src = link;
-  photoElement.querySelector('#name').setAttribute('alt', name);
+  const nameContent = photoElement.querySelector('#name').textContent = name;
+  const linkContent = photoElement.querySelector('#link').src = link;
+  const altContent  = photoElement.querySelector('#name').setAttribute('alt', name);
   photoFlexItem.prepend(photoElement);
 
   // Кнопка лайка
@@ -103,25 +109,41 @@ function addPhotoItem(name, link) {
   function deletePhotoItem () {
     photoElement.remove();
   };
-  
-  // Слушатели для кнопки удаления и лайка
-  deleteButton.addEventListener('click', deletePhotoItem)
-  likeButton.addEventListener('click', likeButtonActive)
+
+  // Добавляет всплытие картинки
+  function imageModalAdd (addPhotoItem) {
+    openPopupImage();
+    const imageModal = document.querySelector('.popup__image');
+    const imageModalTitle = document.querySelector('.popup__title-image');
+    imageModal.src = link;
+    imageModal.alt = name;
+    imageModalTitle.textContent = name;
+  }
+
+  const imagePopupClick = document.querySelector('.photo-flex__image');
+  // Слушатели для всплытия картинки, кнопки удаления и лайка
+  imagePopupClick.addEventListener('click', imageModalAdd);
+  deleteButton.addEventListener('click', deletePhotoItem);
+  likeButton.addEventListener('click', likeButtonActive);
 };
 
+
+// Передача родных карточек на сайте
 initialCards.forEach(function (item) {
   addPhotoItem(item.name, item.link);
 });
 
+// Кнопка сохраненния значений новых карточек
 saveButton[1].addEventListener('click', function () {
   const name = itemNameInput;
   const link = itemLinkInput;
   addPhotoItem(name.value, link.value);
 });
 
-
+// Функция отправки
 function formSubmitHandlerPhoto(evt) {
   evt.preventDefault();
   closePopup();
 }
 formElement[1].addEventListener('submit', formSubmitHandlerPhoto);
+
