@@ -51,10 +51,10 @@
         <h2 class="title popup__title popup__title_item-form">Новое место</h2>
         <form id="form" name="form" class="popup__form-container">
           <label>
-            <input type="text" id="itemNameInput" name="itemNameInput" class="popup__subtitle popup__subtitle_color item__name-input" placeholder="Название">
+            <input type="text" id="itemNameInput" name="itemNameInput" class="popup__subtitle popup__subtitle_color item-name-input" placeholder="Название">
           </label>
           <label>
-            <input type="text" id="itemLinkInput" name="itemUrlInput" class="popup__subtitle popup__subtitle_color item__link-input" placeholder="Ссылка на картинку">
+            <input type="text" id="itemLinkInput" name="itemLinkInput" class="popup__subtitle popup__subtitle_color item-link-input" placeholder="Ссылка на картинку">
           </label>
           <button type="submit" id="save-button" class="popup__save-button">Создать</button>
         </form>
@@ -63,7 +63,7 @@
     <template id="photo-template">
         <li id="container" class="photo-flex__item">
           <img id="link" src="" alt="" class="photo-flex__image">
-          <button type="button" class="photo-flex__like-button"></button>
+          <button id="like" type="button" class="photo-flex__like-button"></button>
           <h2 id="name" class="title photo-flex__title"></h2>
         </li>
     </template>

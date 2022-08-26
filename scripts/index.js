@@ -8,8 +8,8 @@ const saveButton = document.querySelectorAll('.popup__save-button');
 const formElement = document.querySelectorAll('.popup__form-container');
 const nameInput = document.querySelector('.name-input');
 const jobInput = document.querySelector('.job-input');
-const itemNameInput = document.querySelector('.item__name-input');
-const itemLinkInput = document.querySelector('.item__link-input');
+const itemNameInput = document.querySelector('.item-name-input');
+const itemLinkInput = document.querySelector('.item-link-input');
 
 /* other */
 const popupShow = document.querySelectorAll('.popup')
@@ -85,15 +85,20 @@ const initialCards = [
 
 function addPhotoItem(name, link) {
   const photoElement = photoTemplate.querySelector('#container').cloneNode(true);
+  const likeButton = photoElement.querySelector('.photo-flex__like-button');
   photoElement.querySelector('#name').textContent = name;
   photoElement.querySelector('#link').src = link;
   photoElement.querySelector('#name').setAttribute('alt', name);
   photoFlexItem.prepend(photoElement);
+
+  function likeButtonActive () {
+    likeButton.classList.toggle('photo-flex__like-button_active')
+};
+  likeButton.addEventListener('click', likeButtonActive)
 };
 
 initialCards.forEach(function (item) {
   addPhotoItem(item.name, item.link);
-  photoFlexItem.append(item);
 });
 
 saveButton[1].addEventListener('click', function () {
@@ -108,4 +113,3 @@ function formSubmitHandlerPhoto(evt) {
   closePopup();
 }
 formElement[1].addEventListener('submit', formSubmitHandlerPhoto);
-
