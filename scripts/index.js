@@ -2,10 +2,8 @@
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button')
 const addButton = document.querySelector('.profile__add-button');
-const saveButton = document.querySelectorAll('.popup__save-button');
 
 /* form */
-const formElements = document.querySelectorAll('.popup__form-container');
 const submitProfileFormHandlerAdd = document.querySelector('.submit-profile-form-handler-add');
 const submitProfileFormHandlerEdit = document.querySelector('.submit-profile-form-handler-edit')
 const nameInput = document.querySelector('.name-input');
@@ -14,7 +12,6 @@ const itemNameInput = document.querySelector('.item-name-input');
 const itemLinkInput = document.querySelector('.item-link-input');
 
 /* other */
-const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.profile-popup');
 const photoItemPopup = document.querySelector('.photo-item-popup');
 const photoFullscreenPopup = document.querySelector('.photo-fullscreen-popup');
@@ -24,11 +21,8 @@ const photoFlexItem = document.querySelector('.photo-flex__list');
 const photoTemplate = document.querySelector('#photo-template').content;
 const imageModal = document.querySelector('.popup__image');
 const imageModalTitle = document.querySelector('.popup__title-image');
-const likeButton = document.querySelector('.photo-flex__like-button');
 
 /* main js code */
-
-
 
 // Функции открытия попапа
 function openPopup(popupOpen) {
@@ -99,7 +93,6 @@ const initialCards = [
     const photoElement = photoTemplate.querySelector('#container').cloneNode(true);
     const imageNameCard = photoElement.querySelector('.photo-flex__title');
     const imageLinkCard = photoElement.querySelector('.photo-flex__image');
-
     imageNameCard.textContent = item.name;
     imageLinkCard.src = item.link;
     imageLinkCard.alt = item.name;
@@ -127,7 +120,7 @@ const initialCards = [
     return photoElement;
   };
 
-  // Присвоение значения новым айтемам и добавление на сайт
+  // Присвоение значения новым айтемам и добавление на страницу
   function addPhotoItem(cardAdd) {
     photoFlexItem.prepend(createCard(cardAdd));
   };

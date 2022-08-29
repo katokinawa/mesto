@@ -4,6 +4,7 @@
   width: 242px;
   height: 46px;
   background-image: url(../../../images/save-button.svg);
+  background-repeat: no-repeat;
   border: 0;
   color: #FFF;
   font-weight: 400;
