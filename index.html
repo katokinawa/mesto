@@ -34,7 +34,7 @@
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="title popup__title">Редактировать профиль</h2>
-        <form name="form" class="popup__form-container handle-profile-form-submit-edit">
+        <form name="form" class="popup__form-container submit-profile-form-handler-edit">
           <label>
             <input type="text" id="nameInput" name="nameInput" class="popup__subtitle name-input" placeholder="Ваше имя">
           </label>
@@ -49,12 +49,12 @@
       <div class="popup__container popup__container_align-items_start">
         <button type="button" class="popup__close-button"></button>
         <h2 class="title popup__title popup__title_item-form">Новое место</h2>
-        <form name="form" class="popup__form-container handle-profile-form-submit-add">
+        <form name="form" class="popup__form-container submit-profile-form-handler-add">
           <label>
-            <input type="text" id="itemNameInput" name="itemNameInput" class="popup__subtitle popup__subtitle_color item-name-input" placeholder="Название">
+            <input type="text" id="itemNameInput" name="itemNameInput" class="popup__subtitle item-name-input" placeholder="Название">
           </label>
           <label>
-            <input type="text" id="itemLinkInput" name="itemLinkInput" class="popup__subtitle popup__subtitle_color item-link-input" placeholder="Ссылка на картинку">
+            <input type="text" id="itemLinkInput" name="itemLinkInput" class="popup__subtitle item-link-input" placeholder="Ссылка на картинку">
           </label>
           <button type="submit" class="popup__save-button popup__create-button">Создать</button>
         </form>
@@ -69,9 +69,9 @@
     </section>
     <template id="photo-template">
       <li id="container" class="photo-flex__item">
-        <img id="link" src="" alt="" class="photo-flex__image">
+        <img id="link" src="#" alt="#" class="photo-flex__image">
         <button id="like" type="button" class="photo-flex__like-button"></button>
-        <h2 id="name" class="title photo-flex__title"></h2>
+        <h2 id="name" class="title photo-flex__title">#</h2>
         <button type="button" class="photo-flex__trash"></button>
       </li>
     </template>

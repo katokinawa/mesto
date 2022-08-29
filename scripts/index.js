@@ -6,8 +6,8 @@ const saveButton = document.querySelectorAll('.popup__save-button');
 
 /* form */
 const formElements = document.querySelectorAll('.popup__form-container');
-const profileHandleFormSubmitAdd = document.querySelector('.handle-profile-form-submit-add');
-const profileHandleFormSubmitEdit = document.querySelector('.handle-profile-form-submit-edit')
+const submitProfileFormHandlerAdd = document.querySelector('.submit-profile-form-handler-add');
+const submitProfileFormHandlerEdit = document.querySelector('.submit-profile-form-handler-edit')
 const nameInput = document.querySelector('.name-input');
 const jobInput = document.querySelector('.job-input');
 const itemNameInput = document.querySelector('.item-name-input');
@@ -22,10 +22,9 @@ const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
 const photoFlexItem = document.querySelector('.photo-flex__list');
 const photoTemplate = document.querySelector('#photo-template').content;
-const imageModal = photoFullscreenPopup.querySelector('.popup__image');
-const imageModalTitle = photoFullscreenPopup.querySelector('.popup__title-image');
-const imagePopupClick = photoTemplate.querySelector('.photo-flex__image');
-const likeButton = photoTemplate.querySelector('.photo-flex__like-button');
+const imageModal = document.querySelector('.popup__image');
+const imageModalTitle = document.querySelector('.popup__title-image');
+const likeButton = document.querySelector('.photo-flex__like-button');
 
 /* main js code */
 
@@ -56,18 +55,18 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(photoItemPopup);
-  profileHandleFormSubmitAdd.reset();
+  submitProfileFormHandlerAdd.reset();
 });
 
-// Слушатели отправки форм на сайте
-profileHandleFormSubmitEdit.addEventListener('submit', (evt) => {
+// Слушатель отправки формы редактирования на сайте
+submitProfileFormHandlerEdit.addEventListener('submit', (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(profilePopup);
 });
 
-
+// Родные карточки
 const initialCards = [
   {
     name: 'Архыз',
@@ -95,24 +94,38 @@ const initialCards = [
   }
 ];
 
-  // Создание карточки
+  // Функиця создания карточки
   function createCard(item) {
     const photoElement = photoTemplate.querySelector('#container').cloneNode(true);
     const imageNameCard = photoElement.querySelector('.photo-flex__title');
     const imageLinkCard = photoElement.querySelector('.photo-flex__image');
+
     imageNameCard.textContent = item.name;
     imageLinkCard.src = item.link;
     imageLinkCard.alt = item.name;
+
+    // Кнопка лайка внутри карточки
+    const likeButton = photoElement.querySelector('.photo-flex__like-button');
+    likeButton.addEventListener('click', (evt) => {
+        evt.target.classList.toggle('photo-flex__like-button_active');
+    });
+
+    // Кнопка удаления карточки
+    const deleteButton = photoElement.querySelector('.photo-flex__trash');
+    deleteButton.addEventListener('click', (evt) => {
+        evt.target.closest('.photo-flex__item').remove();
+    });
+
+    // Открытие полного размера изображения внутри карточки
+      imageLinkCard.addEventListener('click', (evt) => {
+      imageModalTitle.textContent = evt.target.alt;
+      imageModal.src = evt.target.src;
+      imageModal.alt = evt.target.alt;
+      openPopup(photoFullscreenPopup);
+    });
+
     return photoElement;
   };
-
-  const deleteButton = photoTemplate.querySelector('.photo-flex__trash');
-  console.log(deleteButton);
-
-  deleteButton.addEventListener('click', () => {
-    deleteButton.remove();
-    console.log('test');
-  });
 
   // Присвоение значения новым айтемам и добавление на сайт
   function addPhotoItem(cardAdd) {
@@ -122,32 +135,8 @@ const initialCards = [
   // Передача родных карточек на сайте
   initialCards.forEach(addPhotoItem);
 
-  // Добавляет всплытие картинки
-  function imageModalAdd (name, link) {
-    openPopup(photoFullscreenPopup);
-    imageModal.src = link;
-    imageModal.alt = name;
-    imageModalTitle.textContent = name;
-    return name, link;
-  }
-
-  // Удаление карточки
-
-
-// Кнопка лайка
-function likeButtonActive () {
-    likeButton.classList.toggle('photo-flex__like-button_active')
-  };
-
-
-  likeButton.addEventListener('click', likeButtonActive);
-
-
-  imagePopupClick.addEventListener('click', imageModalAdd);
-
-  // Слушатели для всплытия картинки и добавления карточки
-
-  profileHandleFormSubmitAdd.addEventListener('submit', (evt) => {
+  // Слушатель, который позволяет отправлять форму и создавать карточки
+  submitProfileFormHandlerAdd.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const cardBlank = new Object();
     cardBlank.name = itemNameInput.value;
@@ -155,4 +144,3 @@ function likeButtonActive () {
     addPhotoItem(cardBlank);
     closePopup(photoItemPopup);
   });
-
