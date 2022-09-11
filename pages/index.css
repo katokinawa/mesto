@@ -48,7 +48,7 @@
 
 /* validation */
 @import url(../blocks/popup/__error/popup__error.css);
-@import url(../blocks/popup/__error/_last/popup__error_last.css);
+@import url(../blocks/popup/__error/_position/_bottom/popup__error_position_bottom.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__input/_type/_error/popup__input_type_error.css);
 @import url(../blocks/popup/__input/popup__input.css);
