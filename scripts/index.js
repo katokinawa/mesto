@@ -22,7 +22,8 @@ const photoTemplate = document.querySelector('#photo-template').content;
 const imageModal = document.querySelector('.popup__image');
 const imageModalTitle = document.querySelector('.popup__title-image');
 const popups = document.querySelectorAll('.popup');
-const popupSaveButton = document.querySelector('.popup__save-button')
+const popupSaveButton = document.querySelector('.popup__save-button');
+const popupCreateButton = document.querySelector('.popup__create-button');
 /* main js code */
 
 // Функции открытия попапа
@@ -43,10 +44,10 @@ function setButtonActiveProfile() {
   popupSaveButton.removeAttribute('disabled');
 };
 
-// Функция выключения кнопки в попапе редактирования профиля
+// Функция выключения кнопки в попапе добавления карточек
 function setButtonDisabledPhotoItem() {
-  popupSaveButton.classList.add('popup__button_disabled');
-  popupSaveButton.setAttribute('disabled', '');
+  popupCreateButton.classList.add('popup__button_disabled');
+  popupCreateButton.setAttribute('disabled', '');
 };
 
 // Функция закрытия попапа по клику на клавишу "Esc"
@@ -152,7 +153,7 @@ function createCard(item) {
     imageModal.alt = item.target.alt;
     openPopup(photoFullscreenPopup);
   });
-  
+
   return photoElement;
 };
 
