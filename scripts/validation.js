@@ -1,6 +1,7 @@
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
 
+// Дальше по коду именуется "cfg"
 const enableValidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -11,9 +12,8 @@ const enableValidationConfig = {
 };
 
 // Показываем ошибки в span либо скрываем
-function errorsShowAndHidden (form, input, cfg) {
+function errorShowAndHidden (form, input, cfg) {
   const error = form.querySelector(`.${input.id}-error`);
-  console.log()
   if (!input.validity.valid) {
     error.classList.add(cfg.errorClass);
     error.textContent = input.validationMessage;
@@ -25,7 +25,7 @@ function errorsShowAndHidden (form, input, cfg) {
 
 // Валидируем инпуты
 function validateInputs(form, input, cfg) {
-  errorsShowAndHidden(form, input, cfg);
+  errorShowAndHidden(form, input, cfg);
   if (!input.validity.valid) {
     input.classList.add(cfg.inputErrorClass);
   } else {
@@ -34,7 +34,7 @@ function validateInputs(form, input, cfg) {
 };
 
 // Вешаем обработчики на инпуты
-function setHandlersInputs (form, cfg) {
+function setHandlerInputs (form, cfg) {
   const inputs = Array.from(form.querySelectorAll(cfg.inputSelector));
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
@@ -48,15 +48,15 @@ function disableDefaultHandling (evt) {
   evt.preventDefault();
 };
 
-// Включаем валидацию
+// Функция запуска валидации
 function enableValidation (cfg) {
   const forms = document.querySelectorAll(cfg.formSelector);
 
   forms.forEach((form) => {
     form.addEventListener('submit', disableDefaultHandling); // Функция отключения дефолтного поведения для форм
-    setHandlersInputs(form, cfg); // Функция вешает обработчики на инпуты
+    setHandlerInputs(form, cfg); // Функция вешает обработчики на инпуты
   });
 };
 
-
+// Включаем валидацию
 enableValidation(enableValidationConfig);

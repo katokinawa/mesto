@@ -21,7 +21,7 @@ const photoFlexItem = document.querySelector('.photo-flex__list');
 const photoTemplate = document.querySelector('#photo-template').content;
 const imageModal = document.querySelector('.popup__image');
 const imageModalTitle = document.querySelector('.popup__title-image');
-
+const popup = document.querySelectorAll('.popup');
 /* main js code */
 
 // Функции открытия попапа
@@ -34,11 +34,19 @@ function closePopup(popupClose) {
   popupClose.classList.remove('popup_opened');
 };
 
+// Функция закрытия попапа по клику на оверлей
+popup.forEach((popupElement) => {
+  popupElement.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popupElement);
+    };
+  });
+})
 
 // Слушатели событий
 closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup))
+  const popupClosest = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popupClosest))
 });
 
 editButton.addEventListener('click', () => {
@@ -88,52 +96,52 @@ const initialCards = [
   }
 ];
 
-  // Функиця создания карточки
-  function createCard(item) {
-    const photoElement = photoTemplate.querySelector('#container').cloneNode(true);
-    const imageNameCard = photoElement.querySelector('.photo-flex__title');
-    const imageLinkCard = photoElement.querySelector('.photo-flex__image');
-    imageNameCard.textContent = item.name;
-    imageLinkCard.src = item.link;
-    imageLinkCard.alt = item.name;
+// Функиця создания карточки
+function createCard(item) {
+  const photoElement = photoTemplate.querySelector('#container').cloneNode(true);
+  const imageNameCard = photoElement.querySelector('.photo-flex__title');
+  const imageLinkCard = photoElement.querySelector('.photo-flex__image');
+  imageNameCard.textContent = item.name;
+  imageLinkCard.src = item.link;
+  imageLinkCard.alt = item.name;
 
-    // Кнопка лайка внутри карточки
-    const likeButton = photoElement.querySelector('.photo-flex__like-button');
-    likeButton.addEventListener('click', (evt) => {
-        evt.target.classList.toggle('photo-flex__like-button_active');
-    });
-
-    // Кнопка удаления карточки
-    const deleteButton = photoElement.querySelector('.photo-flex__trash');
-    deleteButton.addEventListener('click', (evt) => {
-        evt.target.closest('.photo-flex__item').remove();
-    });
-
-    // Открытие полного размера изображения внутри карточки
-      imageLinkCard.addEventListener('click', (evt) => {
-      imageModalTitle.textContent = evt.target.alt;
-      imageModal.src = evt.target.src;
-      imageModal.alt = evt.target.alt;
-      openPopup(photoFullscreenPopup);
-    });
-
-    return photoElement;
-  };
-
-  // Присвоение значения новым айтемам и добавление на страницу
-  function addPhotoItem(cardAdd) {
-    photoFlexItem.prepend(createCard(cardAdd));
-  };
-
-  // Передача родных карточек на сайте
-  initialCards.forEach(addPhotoItem);
-
-  // Слушатель, который позволяет отправлять форму и создавать карточки
-  submitProfileFormHandlerAdd.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const cardBlank = new Object();
-    cardBlank.name = itemNameInput.value;
-    cardBlank.link = itemLinkInput.value;
-    addPhotoItem(cardBlank);
-    closePopup(photoItemPopup);
+  // Кнопка лайка внутри карточки
+  const likeButton = photoElement.querySelector('.photo-flex__like-button');
+  likeButton.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('photo-flex__like-button_active');
   });
+
+  // Кнопка удаления карточки
+  const deleteButton = photoElement.querySelector('.photo-flex__trash');
+  deleteButton.addEventListener('click', (evt) => {
+    evt.target.closest('.photo-flex__item').remove();
+  });
+
+  // Открытие полного размера изображения внутри карточки
+  imageLinkCard.addEventListener('click', (evt) => {
+    imageModalTitle.textContent = evt.target.alt;
+    imageModal.src = evt.target.src;
+    imageModal.alt = evt.target.alt;
+    openPopup(photoFullscreenPopup);
+  });
+
+  return photoElement;
+};
+
+// Присвоение значения новым айтемам и добавление на страницу
+function addPhotoItem(cardAdd) {
+  photoFlexItem.prepend(createCard(cardAdd));
+};
+
+// Передача родных карточек на сайте
+initialCards.forEach(addPhotoItem);
+
+// Слушатель, который позволяет отправлять форму и создавать карточки
+submitProfileFormHandlerAdd.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const cardBlank = new Object();
+  cardBlank.name = itemNameInput.value;
+  cardBlank.link = itemLinkInput.value;
+  addPhotoItem(cardBlank);
+  closePopup(photoItemPopup);
+});
