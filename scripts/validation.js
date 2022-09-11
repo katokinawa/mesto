@@ -49,8 +49,10 @@ function hasInvalid (inputs) {
 function setButtonStateSave(cfg, button, inputs) {
   if (hasInvalid(inputs)) {
     button.classList.add(cfg.inactiveButtonClass);
+    button.setAttribute('disabled', '');
   } else {
     button.classList.remove(cfg.inactiveButtonClass);
+    button.removeAttribute('disabled');
   };
 };
 

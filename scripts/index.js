@@ -29,7 +29,6 @@ const popupSaveButton = document.querySelector('.popup__save-button')
 function openPopup(popupOpen) {
   popupOpen.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupHandleClickEscape);
-  closePopupHandleClickOnOverlay(); // Внутри уже свой слушатель
 };
 
 // Функция закрытия попапа
@@ -41,21 +40,20 @@ function closePopup(popupClose) {
 // Функция включения кнопки в попапе редактирования профиля
 function setButtonActiveProfile() {
   popupSaveButton.classList.remove('popup__button_disabled');
+  popupSaveButton.removeAttribute('disabled');
 };
 
 // Функция выключения кнопки в попапе редактирования профиля
 function setButtonDisabledPhotoItem() {
   popupSaveButton.classList.add('popup__button_disabled');
-}
+  popupSaveButton.setAttribute('disabled', '');
+};
 
 // Функция закрытия попапа по клику на клавишу "Esc"
 function closePopupHandleClickEscape(evt) {
   if (evt.key === 'Escape') {
-    popups.forEach((el) => {
-      if (el.classList.contains('popup_opened')) {
-        closePopup(el);
-      };
-    });
+    const popupClosePressEsc = document.querySelector('.popup_opened');
+    closePopup(popupClosePressEsc);
   };
 };
 
@@ -63,13 +61,13 @@ function closePopupHandleClickEscape(evt) {
 function closePopupHandleClickOnOverlay() {
   popups.forEach((el) => {
     el.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup')) {
+      if (evt.target === evt.currentTarget) { // У ревьювера была ошибка в слове "target" в окне замечания, а я решил скопировать, вместо того, чтобы писать вручную (мем смешной, ситуация страшная)...
         closePopup(el);
       };
     });
   });
-}
-
+};
+closePopupHandleClickOnOverlay();
 
 // Слушатели событий
 closeButtons.forEach((button) => {
@@ -80,8 +78,8 @@ closeButtons.forEach((button) => {
 editButton.addEventListener('click', () => {
   openPopup(profilePopup);
   setButtonActiveProfile();
-  nameInput.setAttribute('value', profileName.textContent);
-  jobInput.setAttribute('value', profileJob.textContent);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 });
 
 addButton.addEventListener('click', () => {
@@ -148,13 +146,13 @@ function createCard(item) {
   });
 
   // Открытие полного размера изображения внутри карточки
-  imageLinkCard.addEventListener('click', (evt) => {
-    imageModalTitle.textContent = evt.target.alt;
-    imageModal.src = evt.target.src;
-    imageModal.alt = evt.target.alt;
+  imageLinkCard.addEventListener('click', (item) => {
+    imageModalTitle.textContent = item.target.alt;
+    imageModal.src = item.target.src;
+    imageModal.alt = item.target.alt;
     openPopup(photoFullscreenPopup);
   });
-
+  
   return photoElement;
 };
 
