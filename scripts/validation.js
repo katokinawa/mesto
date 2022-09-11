@@ -11,23 +11,14 @@ const enableValidationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-function hasInvalid (inputs) {
-  return inputs.some((input) => !input.validity.valid);
-}
-
-function setButtonStateSave(cfg, button, inputs) {
-  if (hasInvalid(inputs)) {
-    button.classList.add(cfg.inactiveButtonClass);
+// Валидируем инпуты
+function validateInputs(form, input, cfg) {
+  showInputError(form, input, cfg);
+  hideInputError(form, input, cfg);
+  if (!input.validity.valid) {
+    input.classList.add(cfg.inputErrorClass);
   } else {
-    button.classList.remove(cfg.inactiveButtonClass);
-  };
-};
-
-function setButtonStateSubmit(cfg, buttonSubmit, inputs) {
-  if (hasInvalid(inputs)) {
-    buttonSubmit.classList.add(cfg.inactiveButtonClass);
-  } else {
-    buttonSubmit.classList.remove(cfg.inactiveButtonClass);
+    input.classList.remove(cfg.inputErrorClass);
   };
 };
 
@@ -49,26 +40,29 @@ function hideInputError(form, input, cfg) {
   };
 };
 
-// Валидируем инпуты
-function validateInputs(form, input, cfg) {
-  showInputError(form, input, cfg);
-  hideInputError(form, input, cfg);
-  if (!input.validity.valid) {
-    input.classList.add(cfg.inputErrorClass);
+// Проверяем валидность инпута для переключения статуса кнопки
+function hasInvalid (inputs) {
+  return inputs.some((input) => !input.validity.valid);
+}
+
+// Задаём кнопке статус вкл/выкл добавлением класса
+function setButtonStateSave(cfg, button, inputs) {
+  if (hasInvalid(inputs)) {
+    button.classList.add(cfg.inactiveButtonClass);
   } else {
-    input.classList.remove(cfg.inputErrorClass);
+    button.classList.remove(cfg.inactiveButtonClass);
   };
 };
 
-// Вешаем обработчики на инпуты и передаём функцию валидации в режиме реального времени
+// Вешаем обработчики на инпуты и передаём функцию валидации для лайв-валидации
 function setHandlerInputs (form, cfg) {
   const inputs = Array.from(form.querySelectorAll(cfg.inputSelector));
   const button = form.querySelector(cfg.submitButtonSelector);
+  setButtonStateSave(cfg, button, inputs); // Проверяем в начале
   inputs.forEach((input) => {
-    setButtonStateSave(cfg, button, inputs);
     input.addEventListener('input', () => {
       validateInputs(form, input, cfg);
-      setButtonStateSave(cfg, button, inputs);
+      setButtonStateSave(cfg, button, inputs); // Проверяем при инпуте
     });
   });
 };
@@ -87,5 +81,5 @@ function enableValidation (cfg) {
   });
 };
 
-// Включаем валидацию
+// Запуск валидации
 enableValidation(enableValidationConfig);

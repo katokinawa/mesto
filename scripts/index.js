@@ -21,32 +21,55 @@ const photoFlexItem = document.querySelector('.photo-flex__list');
 const photoTemplate = document.querySelector('#photo-template').content;
 const imageModal = document.querySelector('.popup__image');
 const imageModalTitle = document.querySelector('.popup__title-image');
-const popup = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
+const popupSaveButton = document.querySelector('.popup__save-button')
 /* main js code */
 
 // Функции открытия попапа
 function openPopup(popupOpen) {
   popupOpen.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupHandleClickEscape);
+  closePopupHandleClickOnOverlay(); // Внутри уже свой слушатель
 };
 
 // Функция закрытия попапа
 function closePopup(popupClose) {
   popupClose.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupHandleClickEscape)
 };
 
-// Функция закрытия попапа по клику на оверлей и через "Esc"
-popup.forEach((popupElement) => {
-  popupElement.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(popupElement);
-    };
+// Функция включения кнопки в попапе редактирования профиля
+function setButtonActiveProfile() {
+  popupSaveButton.classList.remove('popup__button_disabled');
+};
+
+// Функция выключения кнопки в попапе редактирования профиля
+function setButtonDisabledPhotoItem() {
+  popupSaveButton.classList.add('popup__button_disabled');
+}
+
+// Функция закрытия попапа по клику на клавишу "Esc"
+function closePopupHandleClickEscape(evt) {
+  if (evt.key === 'Escape') {
+    popups.forEach((el) => {
+      if (el.classList.contains('popup_opened')) {
+        closePopup(el);
+      };
+    });
+  };
+};
+
+// Функция закрытия попапа по клику на оверлей
+function closePopupHandleClickOnOverlay() {
+  popups.forEach((el) => {
+    el.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup')) {
+        closePopup(el);
+      };
+    });
   });
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popupElement);
-    };
-  });
-});
+}
+
 
 // Слушатели событий
 closeButtons.forEach((button) => {
@@ -56,12 +79,14 @@ closeButtons.forEach((button) => {
 
 editButton.addEventListener('click', () => {
   openPopup(profilePopup);
+  setButtonActiveProfile();
   nameInput.setAttribute('value', profileName.textContent);
   jobInput.setAttribute('value', profileJob.textContent);
 });
 
 addButton.addEventListener('click', () => {
   openPopup(photoItemPopup);
+  setButtonDisabledPhotoItem();
   submitProfileFormHandlerAdd.reset();
 });
 
