@@ -34,14 +34,19 @@ function closePopup(popupClose) {
   popupClose.classList.remove('popup_opened');
 };
 
-// Функция закрытия попапа по клику на оверлей
+// Функция закрытия попапа по клику на оверлей и через "Esc"
 popup.forEach((popupElement) => {
   popupElement.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup')) {
       closePopup(popupElement);
     };
   });
-})
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popupElement);
+    };
+  });
+});
 
 // Слушатели событий
 closeButtons.forEach((button) => {
