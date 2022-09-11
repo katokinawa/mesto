@@ -5,8 +5,7 @@
 const enableValidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
-  saveButtonSelector: '.popup__save-button',
-  submitButtonSelector: '.popup__create-button',
+  submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
@@ -16,11 +15,11 @@ function hasInvalid (inputs) {
   return inputs.some((input) => !input.validity.valid);
 }
 
-function setButtonStateSave(cfg, buttonSave, inputs) {
+function setButtonStateSave(cfg, button, inputs) {
   if (hasInvalid(inputs)) {
-    buttonSave.classList.add(cfg.inactiveButtonClass);
+    button.classList.add(cfg.inactiveButtonClass);
   } else {
-    buttonSave.classList.remove(cfg.inactiveButtonClass);
+    button.classList.remove(cfg.inactiveButtonClass);
   };
 };
 
@@ -64,13 +63,12 @@ function validateInputs(form, input, cfg) {
 // Вешаем обработчики на инпуты и передаём функцию валидации в режиме реального времени
 function setHandlerInputs (form, cfg) {
   const inputs = Array.from(form.querySelectorAll(cfg.inputSelector));
-  const buttonSubmit = form.querySelector(cfg.submitButtonSelector);
-  const buttonSave = form.querySelector(cfg.setButtonStateSave);
+  const button = form.querySelector(cfg.submitButtonSelector);
   inputs.forEach((input) => {
+    setButtonStateSave(cfg, button, inputs);
     input.addEventListener('input', () => {
       validateInputs(form, input, cfg);
-      setButtonStateSubmit(cfg, buttonSubmit, inputs);
-      setButtonStateSave(cfg, buttonSave, inputs);
+      setButtonStateSave(cfg, button, inputs);
     });
   });
 };
