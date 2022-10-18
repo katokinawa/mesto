@@ -1,11 +1,11 @@
 
 export default class Card {
   // В конструктор вместо отдельных свойст имени и ссылки передаётся объект CardInfo
-  constructor(cardInfo, templateSelector, imgCardFullscreen) {
+  constructor(cardInfo, templateSelector, imgCardOpenFullscreen) {
     this._templateSelector = templateSelector;
     this._imageNameCard = cardInfo.name;
     this._imageLinkCard = cardInfo.link;
-    this._imgCardFullscreen = imgCardFullscreen;
+    this._imgCardOpenFullscreen = imgCardOpenFullscreen;
   }
 
   // Получаем шаблон
@@ -33,13 +33,13 @@ export default class Card {
     this._imgCardLink.alt = this._imageNameCard;
 
     this._setEventListeners();
-    
+
     // Возвращаем размеченную карточку
     return this._element;
   }
   // По клику карточка во весь экран
-  _handleClickImgFullscreen() {
-    this._imgCardFullscreen(this._imageNameCard, this._imageLinkCard);
+  _handleClickImgOpenFullscreen() {
+    this._imgCardOpenFullscreen(this._imageNameCard, this._imageLinkCard);
   }
 
  // По клику мусорного ведра - карточка удаляется
@@ -55,7 +55,7 @@ export default class Card {
   // Слушатели событий на методы открытия изображения, кнопки удаления и кнопки лайка
   _setEventListeners() {
     this._imgCardLink.addEventListener('click', () => {
-      this._handleClickImgFullscreen();
+      this._handleClickImgOpenFullscreen();
     });
     this._trash.addEventListener('click', () => {
       this._handleClickDelete();
