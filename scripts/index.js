@@ -127,14 +127,21 @@ const initialCards = [
 // Функиця создания карточки
 
 class Card {
-  constructor(templateSelector, cardInfo) {
+  constructor(cardInfo, templateSelector) {
     this._templateSelector = templateSelector;
     this._imageNameCard = cardInfo.name;
     this._imageLinkCard = cardInfo.link;
+
   }
 
   _getTemplate() {
-    return document.querySelector(this._templateSelector).content.querySelector('#container').cloneNode(true);
+    const template = document
+    .querySelector(this._templateSelector)
+    .content
+    .querySelector('#container')
+    .cloneNode(true);
+
+    return template;
   }
   generateCard() {
     this._element = this._getTemplate();
@@ -144,17 +151,17 @@ class Card {
     this._like = this._element.querySelector('.photo-flex__like-button');
     this._trash = this._element.querySelector('.photo-flex__trash');
 
-    this._imageNameCard.textContent = this._imageNameCard;
-    this._LinkCard.src = this._imageLinkCard;
-    this._LinkCard.alt = this._imageNameCard;
+    this._imgCardName.textContent = this._imageNameCard;
+    this._imgCardLink.src = this._imageLinkCard;
+    this._imgCardLink.alt = this._imageNameCard;
 
     return this._element;
   }
 
   _photoFullscreenPopup(name, link) {
-    imageModalTitle.textContent = name;
+    imageModalTitle.textContent = _imageNameCard;
     imageModal.src = link;
-    imageModal.alt = name;
+    imageModal.alt = _imageNameCard;
     openPopup(photoFullscreenPopup);
   }
 
@@ -184,7 +191,7 @@ class Card {
 }
 
 function createCard(cardInfo) {
-  const cardElement = new Card('.photo-template', cardInfo);
+  const cardElement = new Card(cardInfo, '#photo-template').generateCard();
   return cardElement;
 }
 
