@@ -1,6 +1,6 @@
 import Card from './card.js';
 import { initialCards } from './initialcards.js';
-
+import { Validation } from './validation.js'
 /* button */
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button')
@@ -27,6 +27,29 @@ const popups = document.querySelectorAll('.popup');
 const popupSaveButton = document.querySelector('.popup__save-button');
 const popupCreateButton = document.querySelector('.popup__create-button');
 /* main js code */
+
+const enableValidationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+const formValidators = {}
+
+const enableValidity = (el) => {
+  const form = Array.from(document.querySelectorAll(el.formSelector))
+  form.forEach((form) => {
+    const validator = new Validation(el, form)
+    const name = form.getAttribute('name')
+    formValidators[name] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidity(enableValidationConfig);
 
 // Функции открытия попапа
 function openPopup(popupOpen) {
@@ -70,6 +93,7 @@ function closePopupHandleClickOnOverlay() {
     });
   });
 };
+
 closePopupHandleClickOnOverlay();
 
 // Слушатели событий
@@ -78,17 +102,20 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popupClosest))
 });
 
+// Слушатель, который открывает попап изменения профиля и подставляет "старые" значения в поля ввода
 editButton.addEventListener('click', () => {
   openPopup(profilePopup);
   setButtonActiveProfile();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  formValidators[ submitProfileFormHandlerEdit.getAttribute('name') ]._validityReset();
 });
 
+// Слушатель открывает попап и делает кнопку добавления недоступной, также очищает поля
 addButton.addEventListener('click', () => {
   openPopup(photoItemPopup);
   setButtonDisabledPhotoItem();
-  submitProfileFormHandlerAdd.reset();
+  formValidators[ submitProfileFormHandlerAdd.getAttribute('name') ]._validityReset();
 });
 
 // Слушатель отправки формы редактирования на сайте
@@ -100,10 +127,10 @@ submitProfileFormHandlerEdit.addEventListener('submit', (evt) => {
 });
 
 // Чтобы по нажатию по картинке открывалась во весь экран
-function imgCardFullscreen(name, link) {
-  imageModalTitle.textContent = name;
-  imageModal.src = link;
-  imageModal.alt = name;
+function imgCardFullscreen(nameCard, linkCard) {
+  imageModalTitle.textContent = nameCard;
+  imageModal.src = linkCard;
+  imageModal.alt = nameCard;
   openPopup(photoFullscreenPopup);
 }
 
