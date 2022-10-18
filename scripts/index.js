@@ -61,7 +61,7 @@ function closePopupHandleClickEscape(evt) {
 function closePopupHandleClickOnOverlay() {
   popups.forEach((el) => {
     el.addEventListener('click', (evt) => {
-      if (evt.target === evt.currentTarget) { // У ревьювера была ошибка в слове "target" в окне замечания, а я решил скопировать, вместо того, чтобы писать вручную (мем смешной, ситуация страшная)...
+      if (evt.target === evt.currentTarget) {
         closePopup(el);
       };
     });
@@ -127,11 +127,11 @@ const initialCards = [
 // Функиця создания карточки
 
 class Card {
-  constructor(cardInfo, templateSelector) {
+  constructor(cardInfo, templateSelector, imgCardFullscreen) {
     this._templateSelector = templateSelector;
     this._imageNameCard = cardInfo.name;
     this._imageLinkCard = cardInfo.link;
-
+    this._imgCardFullscreen = imgCardFullscreen;
   }
 
   _getTemplate() {
@@ -143,6 +143,7 @@ class Card {
 
     return template;
   }
+
   generateCard() {
     this._element = this._getTemplate();
 
@@ -155,18 +156,12 @@ class Card {
     this._imgCardLink.src = this._imageLinkCard;
     this._imgCardLink.alt = this._imageNameCard;
 
+    this._setEventListeners();
     return this._element;
   }
 
-  _photoFullscreenPopup(name, link) {
-    imageModalTitle.textContent = _imageNameCard;
-    imageModal.src = link;
-    imageModal.alt = _imageNameCard;
-    openPopup(photoFullscreenPopup);
-  }
-
   _handleClick() {
-    this._photoFullscreenPopup(this._imageNameCard, this._imageLinkCard);
+    this._imgCardFullscreen(this._imageNameCard, this._imageLinkCard);
   }
 
   _handleDelete() {
@@ -179,19 +174,28 @@ class Card {
 
   _setEventListeners() {
     this._imgCardLink.addEventListener('click', () => {
-      _handleClick();
+      this._handleClick();
     });
     this._trash.addEventListener('click', () => {
-      _handleDelete();
+      this._handleDelete();
     });
     this._like.addEventListener('click', () => {
-      _handleLike();
+      this._handleLike();
     });
   }
 }
 
+// Чтобы по нажатию по картинке открывалась во весь экран
+function imgCardFullscreen(name, link) {
+  imageModalTitle.textContent = name;
+  imageModal.src = link;
+  imageModal.alt = name;
+  openPopup(photoFullscreenPopup);
+}
+
+// Создание карточек
 function createCard(cardInfo) {
-  const cardElement = new Card(cardInfo, '#photo-template').generateCard();
+  const cardElement = new Card(cardInfo, '#photo-template', imgCardFullscreen).generateCard();
   return cardElement;
 }
 
