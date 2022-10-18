@@ -7,9 +7,8 @@ export class Validation {
     this._inputErrorClass = enableValidationConfig.inputErrorClass;
     this._errorClass = enableValidationConfig.errorClass;
     this._validationElement = validationElement;
-
-    this._buttonElement = this._validationElement.querySelector(this._submitButtonSelector);
     this._inputs = Array.from(this._validationElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._validationElement.querySelector(this._submitButtonSelector);
   }
     // Валидируем инпуты
   _validateInputs(input) {
@@ -34,6 +33,7 @@ export class Validation {
     error.textContent = '';
   };
 
+  // Проверяем валидацию и по итогу показываем или убираем ошибку
   _checkValidity(el) {
     if (!el.validity.valid) {
       this._showError(el)
@@ -71,10 +71,6 @@ export class Validation {
     });
   };
 
-  // Отключаем дефолтное поведение
-  _disableDefaultHandling (evt) {
-    evt.preventDefault();
-  };
  // Очищаем инпуты от ошибок
   _validityReset() {
     this._inputs.forEach((el) => {
@@ -93,6 +89,6 @@ export class Validation {
       });
     });
   };
-}
+};
 
 

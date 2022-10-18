@@ -1,5 +1,6 @@
 
 export default class Card {
+  // В конструктор вместо отдельных свойст имени и ссылки передаётся объект CardInfo
   constructor(cardInfo, templateSelector, imgCardFullscreen) {
     this._templateSelector = templateSelector;
     this._imageNameCard = cardInfo.name;
@@ -32,6 +33,8 @@ export default class Card {
     this._imgCardLink.alt = this._imageNameCard;
 
     this._setEventListeners();
+    
+    // Возвращаем размеченную карточку
     return this._element;
   }
   // По клику карточка во весь экран

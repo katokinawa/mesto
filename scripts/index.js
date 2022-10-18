@@ -1,6 +1,6 @@
-import Card from './card.js';
+import Card from './Card.js';
 import { initialCards } from './initialcards.js';
-import { Validation } from './validation.js'
+import { Validation } from './FormValidator.js'
 /* button */
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button')
@@ -37,14 +37,15 @@ const enableValidationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-const formValidators = {}
+const formValidator = new Object();
 
-const enableValidity = (el) => {
+// Валидация
+function enableValidity(el) {
   const form = Array.from(document.querySelectorAll(el.formSelector))
   form.forEach((form) => {
     const validator = new Validation(el, form)
     const name = form.getAttribute('name')
-    formValidators[name] = validator;
+    formValidator[name] = validator;
     validator.enableValidation();
   });
 };
@@ -108,14 +109,14 @@ editButton.addEventListener('click', () => {
   setButtonActiveProfile();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  formValidators[ submitProfileFormHandlerEdit.getAttribute('name') ]._validityReset();
+  formValidator[submitProfileFormHandlerEdit.getAttribute('name')]._validityReset();
 });
 
 // Слушатель открывает попап и делает кнопку добавления недоступной, также очищает поля
 addButton.addEventListener('click', () => {
   openPopup(photoItemPopup);
   setButtonDisabledPhotoItem();
-  formValidators[ submitProfileFormHandlerAdd.getAttribute('name') ]._validityReset();
+  formValidator[submitProfileFormHandlerAdd.getAttribute('name')]._validityReset();
 });
 
 // Слушатель отправки формы редактирования на сайте
@@ -127,24 +128,24 @@ submitProfileFormHandlerEdit.addEventListener('submit', (evt) => {
 });
 
 // Чтобы по нажатию по картинке открывалась во весь экран
-function imgCardFullscreen(nameCard, linkCard) {
+function imgCardOpenFullscreen(nameCard, linkCard) {
   imageModalTitle.textContent = nameCard;
   imageModal.src = linkCard;
   imageModal.alt = nameCard;
   openPopup(photoFullscreenPopup);
-}
+};
 
 // Создание карточек
 function createCard(cardInfo) {
-  const cardElement = new Card(cardInfo, '#photo-template', imgCardFullscreen).generateCard();
+  const cardElement = new Card(cardInfo, '#photo-template', imgCardOpenFullscreen).generateCard();
   return cardElement;
-}
+};
 
 // Присвоение значения новым айтемам и добавление на страницу
 function addPhotoItem(cardAdd) {
   const item = createCard(cardAdd);
   photoFlexItem.prepend(item);
-}
+};
 
 // Передача родных карточек на сайт и их добавление
 initialCards.forEach((item) => {

@@ -34,7 +34,7 @@
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="title popup__title">Редактировать профиль</h2>
-        <form name="form" class="popup__form popup__form-container submit-profile-form-handler-edit" novalidate>
+        <form name="edit" class="popup__form popup__form-container submit-profile-form-handler-edit" novalidate>
           <label>
             <input type="text" id="username" name="nameInput" class="username popup__input popup__subtitle name-input" placeholder="Ваше имя" minlength="2" maxlength="40" required>
             <span id="username-error" class="username-error popup__error"></span>
@@ -51,7 +51,7 @@
       <div class="popup__container popup__container_align-items_start">
         <button type="button" class="popup__close-button"></button>
         <h2 class="title popup__title popup__title_item-form">Новое место</h2>
-        <form name="form" class="popup__form popup__form-container submit-profile-form-handler-add" novalidate>
+        <form name="add" class="popup__form popup__form-container submit-profile-form-handler-add" novalidate>
           <label>
             <input id="name" type="text" name="itemNameInput" class="name popup__input popup__subtitle item-name-input" placeholder="Название" minlength="2" maxlength="40" required>
             <span id="name-error" class="name-error popup__error"></span>
@@ -80,7 +80,7 @@
       </li>
     </template>
     <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/validation.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>
     <script type="module" src="./scripts/initialcards.js"></script>
 </body>
 </html>
