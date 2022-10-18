@@ -1,4 +1,5 @@
 import Card from './card.js';
+import { initialCards } from './initialcards.js';
 
 /* button */
 const editButton = document.querySelector('.profile__edit-button');
@@ -98,34 +99,6 @@ submitProfileFormHandlerEdit.addEventListener('submit', (evt) => {
   closePopup(profilePopup);
 });
 
-// Родные карточки
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 // Чтобы по нажатию по картинке открывалась во весь экран
 function imgCardFullscreen(name, link) {
   imageModalTitle.textContent = name;
@@ -150,7 +123,6 @@ function addPhotoItem(cardAdd) {
 initialCards.forEach((item) => {
   addPhotoItem(item);
 });
-
 
 // Слушатель, который позволяет отправлять форму и создавать карточки
 submitProfileFormHandlerAdd.addEventListener('submit', (evt) => {
