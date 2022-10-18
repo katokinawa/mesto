@@ -1,3 +1,5 @@
+import Card from './card.js';
+
 /* button */
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button')
@@ -123,67 +125,6 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
-// Функиця создания карточки
-
-class Card {
-  constructor(cardInfo, templateSelector, imgCardFullscreen) {
-    this._templateSelector = templateSelector;
-    this._imageNameCard = cardInfo.name;
-    this._imageLinkCard = cardInfo.link;
-    this._imgCardFullscreen = imgCardFullscreen;
-  }
-
-  _getTemplate() {
-    const template = document
-    .querySelector(this._templateSelector)
-    .content
-    .querySelector('#container')
-    .cloneNode(true);
-
-    return template;
-  }
-
-  generateCard() {
-    this._element = this._getTemplate();
-
-    this._imgCardName = this._element.querySelector('.photo-flex__title');
-    this._imgCardLink = this._element.querySelector('.photo-flex__image');
-    this._like = this._element.querySelector('.photo-flex__like-button');
-    this._trash = this._element.querySelector('.photo-flex__trash');
-
-    this._imgCardName.textContent = this._imageNameCard;
-    this._imgCardLink.src = this._imageLinkCard;
-    this._imgCardLink.alt = this._imageNameCard;
-
-    this._setEventListeners();
-    return this._element;
-  }
-
-  _handleClick() {
-    this._imgCardFullscreen(this._imageNameCard, this._imageLinkCard);
-  }
-
-  _handleDelete() {
-    this._element.remove();
-  }
-
-  _handleLike() {
-    this._like.classList.toggle('photo-flex__like-button_active');
-  }
-
-  _setEventListeners() {
-    this._imgCardLink.addEventListener('click', () => {
-      this._handleClick();
-    });
-    this._trash.addEventListener('click', () => {
-      this._handleDelete();
-    });
-    this._like.addEventListener('click', () => {
-      this._handleLike();
-    });
-  }
-}
 
 // Чтобы по нажатию по картинке открывалась во весь экран
 function imgCardFullscreen(name, link) {
