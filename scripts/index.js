@@ -24,8 +24,6 @@ const photoFlexItem = document.querySelector('.photo-flex__list');
 const imageModal = document.querySelector('.popup__image');
 const imageModalTitle = document.querySelector('.popup__title-image');
 const popups = document.querySelectorAll('.popup');
-const popupSaveButton = document.querySelector('.popup__save-button');
-const popupCreateButton = document.querySelector('.popup__create-button');
 /* main js code */
 
 const enableValidationConfig = {
@@ -96,13 +94,14 @@ editButton.addEventListener('click', () => {
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  formValidator[submitProfileFormHandlerEdit.getAttribute('name')]._validityReset();
+  formValidator[submitProfileFormHandlerEdit.getAttribute('name')].validityReset();
 });
 
 // Слушатель открывает попап и делает кнопку добавления недоступной, также очищает поля
 addButton.addEventListener('click', () => {
   openPopup(photoItemPopup);
-  formValidator[submitProfileFormHandlerAdd.getAttribute('name')]._validityReset();
+  submitProfileFormHandlerAdd.reset();
+  formValidator[submitProfileFormHandlerAdd.getAttribute('name')].validityReset();
 });
 
 // Слушатель отправки формы редактирования на сайте

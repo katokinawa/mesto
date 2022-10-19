@@ -66,7 +66,7 @@ export class FormValidator {
   };
 
  // Очищаем инпуты от ошибок
-  _validityReset() {
+  validityReset() {
     this._inputs.forEach((el) => {
       this._closeError(el);
     });
