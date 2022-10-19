@@ -45,6 +45,7 @@ export default class Card {
  // По клику мусорного ведра - карточка удаляется
   _handleClickDelete() {
     this._element.remove();
+    this._element =  null;
   }
 
   // По клику кнопки лайк, ставится лайк
