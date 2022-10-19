@@ -50,14 +50,18 @@ function enableValidity(el) {
 
 enableValidity(enableValidationConfig);
 
+
+
 // Функции открытия попапа
 function openPopup(popupOpen) {
   popupOpen.classList.add('popup_opened');
+  photoFullscreenPopup.classList.add('popup_opened_opacity_low');
   document.addEventListener('keydown', closePopupHandleClickEscape);
 };
 
 // Функция закрытия попапа
 function closePopup(popupClose) {
+  photoFullscreenPopup.classList.remove('popup_opened_opacity_low');
   popupClose.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupHandleClickEscape)
 };
