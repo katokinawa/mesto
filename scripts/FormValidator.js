@@ -10,31 +10,25 @@ export class FormValidator {
     this._inputs = Array.from(this._validationElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._validationElement.querySelector(this._submitButtonSelector);
   }
-    // Валидируем инпуты
-  _validateInputs(input) {
-    this._showCloseError(input);
-    if (!input.validity.valid) {
-      input.classList.add(this.inputErrorClass);
-    } else {
-      input.classList.remove(this.inputErrorClass);
-    };
-  };
 
   // Показываем ошибку
   _showError(input) {
     const error = this._validationElement.querySelector(`.${input.id}-error`);
     error.classList.add(this._errorClass);
+    error.classList.add(this.inputErrorClass);
     error.textContent = input.validationMessage;
   };
   // Убираем ошибку
   _closeError(input) {
     const error = this._validationElement.querySelector(`.${input.id}-error`);
     error.classList.remove(this._errorClass);
+    error.classList.remove(this.inputErrorClass);
     error.textContent = '';
   };
 
   // Проверяем валидацию и по итогу показываем или убираем ошибку
   _checkValidity(el) {
+    this._closeError(el);
     if (!el.validity.valid) {
       this._showError(el)
     } else {
@@ -65,7 +59,7 @@ export class FormValidator {
     this._setButtonStateSave(); // Проверяем в начале
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
-        this._validateInputs(input);
+        this._checkValidity(input);
         this._setButtonStateSave(); // Проверяем при инпуте
       });
     });

@@ -94,7 +94,6 @@ closeButtons.forEach((button) => {
 // Слушатель, который открывает попап изменения профиля и подставляет "старые" значения в поля ввода
 editButton.addEventListener('click', () => {
   openPopup(profilePopup);
-  setButtonActiveProfile();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   formValidator[submitProfileFormHandlerEdit.getAttribute('name')]._validityReset();
@@ -103,7 +102,6 @@ editButton.addEventListener('click', () => {
 // Слушатель открывает попап и делает кнопку добавления недоступной, также очищает поля
 addButton.addEventListener('click', () => {
   openPopup(photoItemPopup);
-  setButtonDisabledPhotoItem();
   formValidator[submitProfileFormHandlerAdd.getAttribute('name')]._validityReset();
 });
 
