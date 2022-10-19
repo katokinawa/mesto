@@ -1,6 +1,6 @@
 import Card from './Card.js';
 import { initialCards } from './initialcards.js';
-import { Validation } from './FormValidator.js'
+import { FormValidator } from './FormValidator.js'
 /* button */
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button')
@@ -43,7 +43,7 @@ const formValidator = new Object();
 function enableValidity(el) {
   const form = Array.from(document.querySelectorAll(el.formSelector))
   form.forEach((form) => {
-    const validator = new Validation(el, form)
+    const validator = new FormValidator(el, form)
     const name = form.getAttribute('name')
     formValidator[name] = validator;
     validator.enableValidation();
@@ -62,18 +62,6 @@ function openPopup(popupOpen) {
 function closePopup(popupClose) {
   popupClose.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupHandleClickEscape)
-};
-
-// Функция включения кнопки в попапе редактирования профиля
-function setButtonActiveProfile() {
-  popupSaveButton.classList.remove('popup__button_disabled');
-  popupSaveButton.removeAttribute('disabled');
-};
-
-// Функция выключения кнопки в попапе добавления карточек
-function setButtonDisabledPhotoItem() {
-  popupCreateButton.classList.add('popup__button_disabled');
-  popupCreateButton.setAttribute('disabled', '');
 };
 
 // Функция закрытия попапа по клику на клавишу "Esc"
