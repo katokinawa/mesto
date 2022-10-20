@@ -1,4 +1,3 @@
-
 export default class Card {
   // В конструктор вместо отдельных свойст имени и ссылки передаётся объект CardInfo
   constructor(cardInfo, templateSelector, imgCardOpenFullscreen) {
