@@ -54,17 +54,6 @@ export class FormValidator {
     };
   };
 
-  // Вешаем обработчики на инпуты и передаём метод валидации для лайв-валидации
-  _setHandlerInputs() {
-    this._setButtonStateSave(); // Проверяем в начале
-    this._inputs.forEach((input) => {
-      input.addEventListener('input', () => {
-        this._checkValidity(input);
-        this._setButtonStateSave(); // Проверяем при инпуте
-      });
-    });
-  };
-
  // Очищаем инпуты от ошибок
   validityReset() {
     this._inputs.forEach((el) => {
