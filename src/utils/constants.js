@@ -31,6 +31,7 @@ export const addButton = document.querySelector('.profile__add-button');
 export const photoFlexItem = '.photo-flex__list';
 export const imageModal = document.querySelector('.popup__image');
 export const imageModalTitle = document.querySelector('.popup__title-image');
+
 export const enableValidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

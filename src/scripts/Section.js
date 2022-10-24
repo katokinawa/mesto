@@ -13,7 +13,6 @@ export default class Section {
   };
   // Добавялем на сайт
   addItem(cardAdd) {
-    console.log(cardAdd);
     this._selectorContainer.prepend(cardAdd);
   };
 };
