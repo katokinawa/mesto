@@ -6,9 +6,9 @@ export default class PopupWithImage extends Popup {
     super(popupSelector);
   }
   open(element) {
+    super.open()
     imageModal.src = element.link;
     imageModal.alt = element.name;
     imageModalTitle.textContent = element.name;
-    super.open()
   };
 };

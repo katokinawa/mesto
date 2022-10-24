@@ -61,7 +61,7 @@ popupAdd.setEventListeners(); // слушатели
 // Слушатель открывает попап и делает кнопку добавления недоступной, также очищает поля
 addButton.addEventListener('click', () => {
   popupAdd.open();
-  const addButton = popupAdd.formPopup();
+  const addButton = popupAdd.getformPopup();
   formValidator[addButton.getAttribute('name')].validityReset();
 });
 
@@ -86,7 +86,7 @@ popupEdit.setEventListeners(); // слушатели
 // Слушатель, который открывает попап изменения профиля и подставляет "старые" значения в поля ввода
 editButton.addEventListener('click', () => {
   popupEdit.open();
-  const formEdit = popupAdd.formPopup();
+  const formEdit = popupAdd.getformPopup();
   const el = userInfo.getUserInfo();
   popupEdit.setInputValues(el);
   formValidator[formEdit.getAttribute('name')].validityReset();
