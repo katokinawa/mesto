@@ -1,10 +1,10 @@
 export default class Card {
   // В конструктор вместо отдельных свойст имени и ссылки передаётся объект CardInfo
-  constructor(cardInfo, templateSelector, imgCardOpenFullscreen) {
+  constructor(cardInfo, templateSelector, handleCardClick) {
     this._templateSelector = templateSelector;
     this._imageNameCard = cardInfo.name;
     this._imageLinkCard = cardInfo.link;
-    this._imgCardOpenFullscreen = imgCardOpenFullscreen;
+    this._handleCardClick = handleCardClick;
   }
 
   // Получаем шаблон
@@ -38,7 +38,7 @@ export default class Card {
   }
   // По клику карточка во весь экран
   _handleClickImgOpenFullscreen() {
-    this._imgCardOpenFullscreen(this._imageNameCard, this._imageLinkCard);
+    this._handleCardClick(this._imageNameCard, this._imageLinkCard);
   }
 
  // По клику мусорного ведра - карточка удаляется
