@@ -7,8 +7,16 @@
     "build": "webpack --mode production",
     "dev": "webpack serve"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katokinawa/mesto.git"
+  },
   "author": "Daniil Belogur",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katokinawa/mesto/issues"
+  },
+  "homepage": "https://github.com/katokinawa/mesto#readme",
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.19.4",
