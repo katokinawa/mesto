@@ -51,8 +51,9 @@ popupWithImage.setEventListeners(); // слушатели
 // попап с формой
 const popupAdd = new PopupWithForm({
   popupSelector: '.photo-item-popup', // это селектор
-  submitProfileFormHandler: (data)  => { // колбэк сабмита формы
-    cards.addItem(createCard(data)); // добавляем на сайт
+  submitProfileFormHandler: (data) => { // колбэк сабмита формы
+    console.dir(data)
+    cards.addItem(createCard({name: data.itemNameInput, link: data.itemLinkInput})); // добавляем на сайт
     },
 });
 popupAdd.setEventListeners(); // слушатели
@@ -71,6 +72,7 @@ const popupEdit = new PopupWithForm({
   submitProfileFormHandler
 });
 popupEdit.setEventListeners(); // слушатели
+
 // Информация о пользователе
 const userInfo = new UserInfo({
   nameSelector: profileName,

@@ -30,7 +30,7 @@ export default class Card {
     this._imgCardName.textContent = this._imageNameCard;
     this._imgCardLink.src = this._imageLinkCard;
     this._imgCardLink.alt = this._imageNameCard;
-
+    
     this._setEventListeners();
 
     // Возвращаем размеченную карточку
