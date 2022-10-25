@@ -5,6 +5,8 @@ export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
   }
+  // вставляем в попап с фуллскрин картинкой его тайтл, алт, и саму картинку
+  // Также перезаписываем родительский метод
   open(element) {
     super.open()
     imageModal.src = element.link;

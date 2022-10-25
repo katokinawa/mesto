@@ -1,9 +1,9 @@
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
-import PopupWithImage from '../scripts/PopupWithImage.js';
-import PopupWithForm from '../scripts/PopupWithForm.js'
-import Section from '../scripts/Section.js';
-import UserInfo from '../scripts/UserInfo.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js'
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 
 import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig, nameInput, jobInput, profileName, profileJob } from "../utils/constants.js";
 import "./index.css"
@@ -32,7 +32,7 @@ function createCard(cardInfo) {
   return cardElement;
 };
 
-// первоначальные карточки
+// Первоначальные карточки
 const cards = new Section({
   items: initialCards, // это массив данных, которые нужно добавить на страницу при инициализации класса
   renderer: (data) => { // функция, которая отвечает за создание и отрисовку данных на странице.
@@ -43,12 +43,12 @@ const cards = new Section({
 );
 cards.renderItems();
 
-// попап с картинкой
+// Попап с картинкой
 const popupWithImage = new PopupWithImage('.photo-fullscreen-popup')
 popupWithImage.setEventListeners(); // слушатели
 
 
-// попап с формой
+// Попап с формой
 const popupAdd = new PopupWithForm({
   popupSelector: '.photo-item-popup', // это селектор
   submitProfileFormHandler: (data) => { // колбэк сабмита формы
@@ -66,7 +66,7 @@ addButton.addEventListener('click', () => {
   formValidator[addButton.getAttribute('name')].validityReset();
 });
 
-// попап с редактированием профиля
+// Попап с редактированием профиля
 const popupEdit = new PopupWithForm({
   popupSelector: '.profile-popup',
   submitProfileFormHandler
@@ -89,6 +89,7 @@ editButton.addEventListener('click', () => {
   formValidator[formEdit.getAttribute('name')].validityReset();
 });
 
+// Функция сабмита, которая обращается к методу класса userInfo.setUserInfo и задаёт имя и работу
 function submitProfileFormHandler(el){
   userInfo.setUserInfo(el.nameInput, el.jobInput);
 }

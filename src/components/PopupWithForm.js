@@ -8,6 +8,8 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popupSelector.querySelectorAll('.popup__input');
     this._submitProfileFormHandler = submitProfileFormHandler;
   }
+
+  // Получаем форму
   getformPopup() {
     return this._formPopup;
   }
@@ -27,6 +29,7 @@ export default class PopupWithForm extends Popup {
       this.close();
     });
   }
+
   close() {
     super.close()
     this._formPopup.reset();
