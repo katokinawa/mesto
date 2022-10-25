@@ -15,7 +15,7 @@ export default class Popup {
 
   // Закрытие по клику, по оверлею
   _handleClickOnOverlay = (evt) => {
-    if (!evt.target.closest('.popup__container')) {
+    if (evt.target === evt.currentTarget) {
       this.close();
     }
   };

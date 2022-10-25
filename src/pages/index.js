@@ -5,7 +5,7 @@ import PopupWithForm from '../scripts/PopupWithForm.js'
 import Section from '../scripts/Section.js';
 import UserInfo from '../scripts/UserInfo.js';
 
-import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig } from "../utils/constants.js";
+import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig, nameInput, jobInput, profileName, profileJob } from "../utils/constants.js";
 import "./index.css"
 
 const formValidator = new Object();
@@ -65,30 +65,28 @@ addButton.addEventListener('click', () => {
   formValidator[addButton.getAttribute('name')].validityReset();
 });
 
-
-// Информация о пользователе
-const userInfo = new UserInfo({
-  nameSelector: '.profile__title',
-  jobSelector: '.profile__subtitle',
-});
-
-
 // попап с редактированием профиля
 const popupEdit = new PopupWithForm({
   popupSelector: '.profile-popup',
-  submitProfileFormHandler: (data)  => {
-    userInfo.setUserInfo(data);
-    },
+  submitProfileFormHandler
 });
 popupEdit.setEventListeners(); // слушатели
-
+// Информация о пользователе
+const userInfo = new UserInfo({
+  nameSelector: profileName,
+  jobSelector: profileJob
+});
 
 // Слушатель, который открывает попап изменения профиля и подставляет "старые" значения в поля ввода
 editButton.addEventListener('click', () => {
   popupEdit.open();
-  const formEdit = popupAdd.getformPopup();
+  const formEdit = popupEdit.getformPopup();
   const el = userInfo.getUserInfo();
-  popupEdit.setInputValues(el);
+  nameInput.value= el.name;
+  jobInput.value= el.job;
   formValidator[formEdit.getAttribute('name')].validityReset();
 });
 
+function submitProfileFormHandler(el){
+  userInfo.setUserInfo(el.name, el.job);
+}

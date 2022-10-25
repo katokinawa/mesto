@@ -25,7 +25,10 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+export const nameInput = document.querySelector('.name-input');
+export const jobInput = document.querySelector('.job-input');
+export const profileName = document.querySelector('.profile__title');
+export const profileJob = document.querySelector('.profile__subtitle');
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
 export const photoFlexItem = '.photo-flex__list';
