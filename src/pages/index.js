@@ -88,5 +88,6 @@ editButton.addEventListener('click', () => {
 });
 
 function submitProfileFormHandler(el){
-  userInfo.setUserInfo(el.name, el.job);
+  console.log(el)
+  userInfo.setUserInfo(el.nameInput, el.jobInput);
 }
