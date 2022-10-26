@@ -27,13 +27,10 @@ export const initialCards = [
 ];
 export const nameInput = document.querySelector('.name-input');
 export const jobInput = document.querySelector('.job-input');
-export const profileName = document.querySelector('.profile__title');
-export const profileJob = document.querySelector('.profile__subtitle');
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
 export const photoFlexItem = '.photo-flex__list';
-export const imageModal = document.querySelector('.popup__image');
-export const imageModalTitle = document.querySelector('.popup__title-image');
+
 
 export const enableValidationConfig = {
   formSelector: '.popup__form',

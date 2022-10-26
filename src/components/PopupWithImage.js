@@ -1,16 +1,17 @@
 import Popup from './Popup.js';
-import { imageModal, imageModalTitle } from '../utils/constants.js'
 
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+    this._imageModal = document.querySelector('.popup__image');
+    this._imageModalTitle = document.querySelector('.popup__title-image');
   }
   // вставляем в попап с фуллскрин картинкой его тайтл, алт, и саму картинку
   // Также перезаписываем родительский метод
   open(element) {
     super.open()
-    imageModal.src = element.link;
-    imageModal.alt = element.name;
-    imageModalTitle.textContent = element.name;
+    this._imageModal.src = element.link;
+    this._imageModal.alt = element.name;
+    this._imageModalTitle.textContent = element.name;
   };
 };

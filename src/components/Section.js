@@ -1,8 +1,8 @@
 export default class Section {
-  constructor ({items, renderer}, selectorContainer) {
+  constructor ({items, renderer}, container) {
     this._items = items;
     this._renderer = renderer;
-    this._selectorContainer = document.querySelector(selectorContainer);
+    this._container = document.querySelector(container);
   }
 
   // Рендерим карточку
@@ -13,6 +13,6 @@ export default class Section {
   };
   // Добавялем на сайт
   addItem(cardAdd) {
-    this._selectorContainer.prepend(cardAdd);
+    this._container.prepend(cardAdd);
   };
 };

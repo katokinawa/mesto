@@ -5,7 +5,7 @@ import PopupWithForm from '../components/PopupWithForm.js'
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 
-import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig, nameInput, jobInput, profileName, profileJob } from "../utils/constants.js";
+import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig, nameInput, jobInput } from "../utils/constants.js";
 import "./index.css"
 
 const formValidator = new Object();
@@ -33,15 +33,15 @@ function createCard(cardInfo) {
 };
 
 // Первоначальные карточки
-const cards = new Section({
+const card = new Section({
   items: initialCards, // это массив данных, которые нужно добавить на страницу при инициализации класса
   renderer: (data) => { // функция, которая отвечает за создание и отрисовку данных на странице.
-    cards.addItem(createCard(data)); // добавялем на сайт
+    card.addItem(createCard(data)); // добавялем на сайт
     },
   },
   photoFlexItem // селектор контейнера, в который нужно добавлять созданные элементы.
 );
-cards.renderItems();
+card.renderItems();
 
 // Попап с картинкой
 const popupWithImage = new PopupWithImage('.photo-fullscreen-popup')
@@ -52,7 +52,7 @@ popupWithImage.setEventListeners(); // слушатели
 const popupAdd = new PopupWithForm({
   popupSelector: '.photo-item-popup', // это селектор
   submitProfileFormHandler: (data) => { // колбэк сабмита формы
-    cards.addItem(createCard({name: data.itemNameInput, link: data.itemLinkInput})); // добавляем на сайт
+    card.addItem(createCard({name: data.itemNameInput, link: data.itemLinkInput})); // добавляем на сайт
     },
 });
 popupAdd.setEventListeners(); // слушатели
@@ -61,8 +61,8 @@ popupAdd.setEventListeners(); // слушатели
 // Слушатель открывает попап и делает кнопку добавления недоступной, также очищает поля
 addButton.addEventListener('click', () => {
   popupAdd.open();
-  const addButton = popupAdd.getformPopup();
-  formValidator[addButton.getAttribute('name')].validityReset();
+  const formAdd = popupAdd.getformPopup();
+  formValidator[formAdd.getAttribute('name')].validityReset();
 });
 
 // Попап с редактированием профиля
@@ -74,8 +74,8 @@ popupEdit.setEventListeners(); // слушатели
 
 // Информация о пользователе
 const userInfo = new UserInfo({
-  nameSelector: profileName,
-  jobSelector: profileJob
+  name: '.profile__title',
+  job: '.profile__subtitle'
 });
 
 // Слушатель, который открывает попап изменения профиля и подставляет "старые" значения в поля ввода
