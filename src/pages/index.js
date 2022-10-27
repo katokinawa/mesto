@@ -52,7 +52,7 @@ popupWithImage.setEventListeners(); // слушатели
 const popupAdd = new PopupWithForm({
   popupSelector: '.photo-item-popup', // это селектор
   submitProfileFormHandler: (data) => { // колбэк сабмита формы
-    card.addItem(createCard({name: data.itemNameInput, link: data.itemLinkInput})); // добавляем на сайт
+    cardSection.addItem(createCard({name: data.itemNameInput, link: data.itemLinkInput})); // добавляем на сайт
     },
 });
 popupAdd.setEventListeners(); // слушатели
