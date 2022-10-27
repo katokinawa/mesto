@@ -33,15 +33,15 @@ function createCard(cardInfo) {
 };
 
 // Первоначальные карточки
-const card = new Section({
+const cardSection = new Section({
   items: initialCards, // это массив данных, которые нужно добавить на страницу при инициализации класса
   renderer: (data) => { // функция, которая отвечает за создание и отрисовку данных на странице.
-    card.addItem(createCard(data)); // добавялем на сайт
+    cardSection.addItem(createCard(data)); // добавялем на сайт
     },
   },
   photoFlexItem // селектор контейнера, в который нужно добавлять созданные элементы.
 );
-card.renderItems();
+cardSection.renderItems();
 
 // Попап с картинкой
 const popupWithImage = new PopupWithImage('.photo-fullscreen-popup')
