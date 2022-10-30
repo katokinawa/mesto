@@ -69,7 +69,7 @@ function createCard(cardInfo) {
   })},
 
   handleTrashClick: () => {
-    popupConfirmForm.open(cardInfo);
+    popupConfirm.open(cardInfo);
     cardId = cardInfo._id;
     cardForTrash = cardElement;
   }},
