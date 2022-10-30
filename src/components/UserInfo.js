@@ -9,7 +9,7 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this._name.textContent,
-      job: this._job.textContent
+      about: this._job.textContent
     }
   }
   // Задаём имя и работу

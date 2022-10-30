@@ -143,9 +143,8 @@ popupEdit.setEventListeners(); // слушатели
 editButton.addEventListener('click', () => {
   popupEdit.open();
   const formEdit = popupEdit.getFormPopup();
-  const el = userInfo.getUserInfo();
-  nameInput.value= el.name;
-  jobInput.value= el.job;
+  const data = userInfo.getUserInfo();
+  popupEdit.setInputValues(data);
   formValidator[formEdit.getAttribute('name')].validityReset();
 });
 
@@ -160,7 +159,6 @@ const popupAvatar = new PopupWithForm({
   submitProfileFormHandler: (data)  => {
     return api.setUserAvatar(data.avatar)
     .then((data) => {
-
       userInfo.setUserAvatar(data);
     })
     .catch((err) => {
