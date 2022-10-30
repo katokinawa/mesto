@@ -30,7 +30,7 @@ Promise.all(promises)
     console.log(`${err}`)
   });
 
-// Валидация
+// Валидация 
 function enableValidity(el) {
   const form = Array.from(document.querySelectorAll(el.formSelector))
   form.forEach((form) => {
