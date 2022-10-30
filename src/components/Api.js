@@ -27,14 +27,11 @@ export default class Api {
     });
   }
 
-  setUserInfo(name, job) {
+  setUserInfo(name, about) {
     return fetch(`${this._url}/users/me`, {
       headers: this._header,
       method: "PATCH",
-      body: JSON.stringify({
-        name,
-        job
-        }),
+      body: JSON.stringify({ name, about }),
     }).then((res) => {
       return this._getResponse(res);
     });
@@ -49,14 +46,11 @@ export default class Api {
     });
   }
 
-  generateCard(item) {
+  generateCard(name, link) {
     return fetch(`${this._url}/cards`, {
       headers: this._header,
       method: "POST",
-      body: JSON.stringify({
-        name: item.itemNameInput,
-        link: item.itemLinkInput,
-      }),
+      body: JSON.stringify({ name, link }),
     }).then((res) => {
       return this._getResponse(res);
     });

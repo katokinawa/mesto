@@ -13,14 +13,14 @@ export default class UserInfo {
     }
   }
   // Задаём имя и работу
-  setUserInfo(name, job, avatar) {
-    this._name.textContent = name;
-    this._job.textContent = job;
-    this._avatar.src = avatar;
+  setUserInfo(data) {
+    this._name.textContent = data.name;
+    this._job.textContent = data.about;
+    this._avatar.src = data.avatar;
   }
 
   setUserId(data) {
-    return formData._id;
+    return data._id;
   }
 
   getUserId() {

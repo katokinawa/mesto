@@ -9,6 +9,7 @@ export default class Card {
     this._handleAddLike = handleAddLike;
     this._handleRemoveLike = handleRemoveLike;
     this._handleTrashClick = handleTrashClick;
+    this._likes = cardInfo.likes;
     this._likeArr = cardInfo.likes;
     this._userId = userId;
   }
@@ -24,29 +25,6 @@ export default class Card {
     return template;
   }
 
-  // Метод создания карточки
-  generateCard() {
-    this._element = this._getTemplate();
-
-    this._imgCardName = this._element.querySelector('.photo-flex__title');
-    this._imgCardLink = this._element.querySelector('.photo-flex__image');
-    this._like = this._element.querySelector('.photo-flex__like-button');
-    this._trash = this._element.querySelector('.photo-flex__trash');
-    this._likeCount = this._element.querySelector('.photo__like-count');
-    this._imgCardName.textContent = this._imageNameCard;
-    this._imgCardLink.src = this._imageLinkCard;
-    this._imgCardLink.alt = this._imageNameCard;
-    this._likeCount.textContent = this._likes.length;
-    this._setLike(this._likes)
-
-    if (this._userId !== this._owner._id) {
-      this._trash.remove();
-    }
-    this._setEventListeners();
-
-    // Возвращаем размеченную карточку
-    return this._element;
-  }
   // По клику карточка во весь экран
   _handleClickImgOpenFullscreen() {
     this._handleCardClick(this._imageNameCard, this._imageLinkCard);
@@ -59,7 +37,7 @@ export default class Card {
   }
 
   // По клику кнопки лайк, ставится лайк
-  _clickLike() {
+  _handleClickLike() {
     if (this._like.classList.contains('photo-flex__like-button_active')) {
       this._handleRemoveLike(this)
     } else {
@@ -81,6 +59,30 @@ export default class Card {
     this._setLike(this._likeArr);
   }
 
+  // Метод создания карточки
+  generateCard() {
+    this._element = this._getTemplate();
+
+    this._imgCardName = this._element.querySelector('.photo-flex__title');
+    this._imgCardLink = this._element.querySelector('.photo-flex__image');
+    this._like = this._element.querySelector('.photo-flex__like-button');
+    this._trash = this._element.querySelector('.photo-flex__trash');
+    this._likeCount = this._element.querySelector('.photo__like-count');
+    this._imgCardName.textContent = this._imageNameCard;
+    this._imgCardLink.src = this._imageLinkCard;
+    this._imgCardLink.alt = this._imageNameCard;
+    this._likeCount.textContent = this._likes.length;
+    this._setLike(this._likes)
+
+    if (this._userId !== this._owner._id) {
+      this._trash.remove();
+    }
+
+    this._setEventListeners();
+
+    // Возвращаем размеченную карточку
+    return this._element;
+  }
 
   // Слушатели событий на методы открытия изображения, кнопки удаления и кнопки лайка
   _setEventListeners() {

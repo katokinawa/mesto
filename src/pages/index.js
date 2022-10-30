@@ -17,6 +17,15 @@ const api = new Api(apiOptions);
 
 const formValidator = new Object();
 
+// Первоначальные карточки
+const cardSection = new Section({
+  renderer: (data) => { // функция, которая отвечает за создание и отрисовку данных на странице.
+  cardSection.addItem(createCard(data)); // добавялем на сайт
+  },
+},
+photoFlexItem // селектор контейнера, в который нужно добавлять созданные элементы.
+);
+
 const promises = [api.getUserInfo(), api.getInitialCards()]
 // Передаём массив с промисами методу Promise.all
 Promise.all(promises)
@@ -24,7 +33,8 @@ Promise.all(promises)
     userInfo.setUserInfo(userData);
     userInfo.setUserId(userData);
     userId = userData._id
-    cardsList.renderItems(CardsData);
+    cardSection.renderItems(CardsData);
+    console.log(CardsData)
   })
   .catch((err) => {
     console.log(`${err}`)
@@ -47,7 +57,7 @@ enableValidity(enableValidationConfig);
 function createCard(cardInfo) {
   const cardElement = new Card(cardInfo, '#photo-template', {
   handleCardClick: () => {
-    popupWithImage.open(cardInfo).generateCard();
+    popupWithImage.open(cardInfo);
   },
 
   handleAddLike: () => {
@@ -75,18 +85,9 @@ function createCard(cardInfo) {
   }},
   userId
   );
-
-  return cardElement;
+  const doneCardElement = cardElement.generateCard();
+  return doneCardElement;
 };
-
-// Первоначальные карточки
-const cardSection = new Section({
-    renderer: (data) => { // функция, которая отвечает за создание и отрисовку данных на странице.
-    cardSection.addItem(createCard(data)); // добавялем на сайт
-    },
-  },
-  photoFlexItem // селектор контейнера, в который нужно добавлять созданные элементы.
-);
 
 // Попап с картинкой
 const popupWithImage = new PopupWithImage('.photo-fullscreen-popup')
@@ -96,8 +97,8 @@ popupWithImage.setEventListeners(); // слушатели
 // Попап с формой
 const popupAdd = new PopupWithForm({
   popupSelector: '.photo-item-popup', // это селектор
-  submitProfileFormHandler: (data) => { // колбэк сабмита формы
-    return api.generateCard(data.itemNameInput, data.itemLinkInput)
+  submitProfileFormHandler: (cardData) => { // колбэк сабмита формы
+    return api.generateCard(cardData.name, cardData.link)
     .then((data) => {
       cardSection.addItem(generateCard(data));
     })
@@ -126,8 +127,8 @@ const userInfo = new UserInfo({
 // Попап с редактированием профиля
 const popupEdit = new PopupWithForm({
   popupSelector: '.profile-popup',
-  submitProfileFormHandler: (data) => {
-    return api.setUserInfo(data.name, data.job)
+  submitProfileFormHandler: (userData) => {
+    return api.setUserInfo(userData.name, userData.about)
     .then((data) => {
       userInfo.setUserInfo(data);
     })
