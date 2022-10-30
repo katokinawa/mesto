@@ -40,6 +40,7 @@
 .photo-flex__list{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin:0;padding:0}@media screen and (min-width:1185px){.photo-flex__list{-moz-column-gap:17px;column-gap:17px;display:grid;grid-template-columns:repeat(3,282px);grid-template-rows:repeat(2,361px)}}
 .photo-flex__item{background:#fff;border-radius:10px;display:grid;grid-template-areas:"img img" "title like-butt";grid-template-columns:1fr 62px;grid-template-rows:282px 79px;height:361px;list-style-type:none;position:relative;width:282px}
 .photo-flex__image{border-radius:10px 10px 0 0;grid-area:img;height:282px;-o-object-fit:cover;object-fit:cover;width:282px}
+.photo-flex__like-count{left:246px;position:absolute;top:333px}
 .photo-flex__title{align-self:center;color:#000;font-size:24px;font-weight:900;grid-area:title;justify-self:start;line-height:29px;margin-left:20px;max-width:195px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .photo-flex__trash{background-color:transparent;background-image:url(images/trash.e3c42771bff3aaa52f76.svg);background-repeat:no-repeat;border:0;cursor:pointer;height:19px;position:absolute;right:20px;top:20px;width:18px}.photo-flex__trash:hover{opacity:.5}
 .photo-flex__like-button{align-self:center;background-color:transparent;background-image:url(images/like-button.0e390048c288271ab07f.svg);background-repeat:no-repeat;border:0;grid-area:like-butt;height:19px;justify-self:center;width:22px}.photo-flex__like-button:hover{cursor:pointer;opacity:.5}
