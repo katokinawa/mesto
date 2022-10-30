@@ -1,7 +1,7 @@
 export default class Api {
   constructor(config) {
     this._url = config.url;
-    this._header = config.header;
+    this._header = config.headers;
   }
 
   _getResponse(res) {
@@ -12,7 +12,7 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch(this._url + "cards", {
+    return fetch(`${this._url}/cards`, {
       headers: this._header,
     }).then((res) => {
       return this._getResponse(res);
@@ -20,7 +20,7 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(this._url + "users/me", {
+    return fetch(`${this._url}/users/me`, {
       headers: this._header,
     }).then((res) => {
       return this._getResponse(res);
@@ -28,7 +28,7 @@ export default class Api {
   }
 
   setUserInfo(name, job) {
-    return fetch(this._url + "users/me", {
+    return fetch(`${this._url}/users/me`, {
       headers: this._header,
       method: "PATCH",
       body: JSON.stringify({
@@ -40,7 +40,7 @@ export default class Api {
     });
   }
   setUserAvatar(item) {
-    return fetch(this._url + "users/me/avatar", {
+    return fetch(`${this._url}/users/me/avatar`, {
       headers: this._header,
       method: "PATCH",
       body: JSON.stringify({ item }),
@@ -50,7 +50,7 @@ export default class Api {
   }
 
   generateCard(item) {
-    return fetch(this._url + "cards", {
+    return fetch(`${this._url}/cards`, {
       headers: this._header,
       method: "POST",
       body: JSON.stringify({
@@ -62,8 +62,8 @@ export default class Api {
     });
   }
 
-  deleteCard(cardObject) {
-    return fetch(this._url + "cards/" + cardObject.cardId, {
+  deleteCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
       headers: this._header,
       method: "DELETE",
     }).then((res) => {
@@ -71,10 +71,19 @@ export default class Api {
     });
   }
 
-  LikeCard(likeCardId, removeLike) {
-    return fetch(this._url + "cards/likes/" + likeCardId, {
+  addLikeCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'PUT',
       headers: this._header,
-      method: removeLike ? "DELETE" : "PUT",
+    }).then((res) => {
+      return this._getResponse(res);
+    });
+  }
+
+  removeLikeCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._header,
     }).then((res) => {
       return this._getResponse(res);
     });

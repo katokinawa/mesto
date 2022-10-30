@@ -30,7 +30,7 @@ Promise.all(promises)
     console.log(`${err}`)
   });
 
-// Валидация 
+// Валидация
 function enableValidity(el) {
   const form = Array.from(document.querySelectorAll(el.formSelector))
   form.forEach((form) => {
@@ -51,8 +51,8 @@ function createCard(cardInfo) {
   },
 
   handleAddLike: () => {
-    api.LikeCard(cardInfo._id)
-    .then(obj => {
+    api.addLikeCard(cardInfo._id)
+    .then((obj) => {
       cardElement.setLikeInfo(obj.likes);
     })
     .catch((err) => {
@@ -60,8 +60,8 @@ function createCard(cardInfo) {
   })},
 
   handleRemoveLike: () => {
-    api.LikeCard(cardInfo._id)
-    .then(obj => {
+    api.removeLikeCard(cardInfo._id)
+    .then((obj) => {
       cardElement.setLikeInfo(obj.likes);
     })
     .catch((err) => {
