@@ -7,6 +7,7 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/photo-fullscreen-popup/photo-fullscreen-popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
@@ -15,9 +16,14 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__title-image/popup__title-image.css);
 @import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__container/_min-heigth/popup__container_min-height.css);
+@import url(../blocks/popup/__title/_avatar-form/popup__title_avatar-form.css);
+@import url(../blocks/popup/__save-avatar-button/popup__save-avatar-button.css);
+@import url(../blocks/popup/__container/_min-height-confirm/popup__container_min-height-confirm.css);
+@import url(../blocks/popup/__title/_confirm-form/popup__title_confirm-form.css);
+@import url(../blocks/popup/__confirm-button/popup__confirm-button.css);
 @import url(../blocks/popup/__container/_align-items/_start/popup__container_align-items_start.css);
 @import url(../blocks/popup/__form-container/popup__form-container.css);
-@import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__title/_item-form/popup__title_item-form.css);
 @import url(../blocks/popup/__subtitle/popup__subtitle.css);
 @import url(../blocks/popup/__subtitle/_margin/_small/popup__subtitle_margin_small.css);

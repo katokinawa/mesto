@@ -29,6 +29,19 @@
         <p class="subtitle footer__subtitle">© 2020 Mesto Russia</p>
       </footer>
     </div>
+    <section class="popup update-avatar-popup">
+      <div class="popup__container popup__container_min-height">
+        <h2 class="title popup__title popup__title_avatar-form">Обновить аватар</h2>
+        <form name="update-avatar" class="popup__form popup__form-container submit-avatar-form-handler-save" novalidate>
+          <label>
+            <input id="avatar-text" type="text" name="avatarInput" placeholder="Ссылка на картинку" class="avatar popup__input popup__subtitle avatar-name-input" required>
+            <span id="avatar-error" class="avatar-error popup__error"></span>
+          </label>
+          <button type="submit" name="save-avatar" class="popup__button popup__save-avatar-button">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </section>
     <section class="popup profile-popup">
       <div class="popup__container">
         <h2 class="title popup__title">Редактировать профиль</h2>
@@ -42,6 +55,15 @@
             <span id="job-error" class="job-error popup__error popup__error_position_bottom"></span>
           </label>
           <button type="submit" name="save" class="popup__button popup__save-button">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </section>
+    <section class="popup confirm-popup">
+      <div class="popup__container popup__container_min-height-confirm">
+        <h2 class="title popup__title popup__title_confirm-form">Вы уверены?</h2>
+        <form name="confirm" class="popup__form popup__form-container submit-profile-form-handler-confirm" novalidate>
+          <button type="submit" class="popup__button popup__confirm-button">Да</button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
