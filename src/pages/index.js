@@ -97,7 +97,6 @@ popupWithImage.setEventListeners(); // слушатели
 const popupAdd = new PopupWithForm({
   popupSelector: '.photo-item-popup', // это селектор
   submitProfileFormHandler: (cardData) => { // колбэк сабмита формы
-    console.log(cardData)
     return api.generateCard(cardData.name, cardData.link)
     .then((data) => {
       cardSection.addItem(createCard(data));
