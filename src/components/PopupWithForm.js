@@ -11,7 +11,7 @@ export default class PopupWithForm extends Popup {
   }
 
   // Получаем форму
-  getformPopup() {
+  getFormPopup() {
     return this._formPopup;
   }
 

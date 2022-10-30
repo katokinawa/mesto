@@ -30,19 +30,6 @@
         <p class="subtitle footer__subtitle">© 2020 Mesto Russia</p>
       </footer>
     </div>
-    <section class="popup update-avatar-popup">
-      <div class="popup__container popup__container_min-height">
-        <h2 class="title popup__title popup__title_avatar-form">Обновить аватар</h2>
-        <form name="update-avatar" class="popup__form popup__form-container submit-avatar-form-handler-save" novalidate>
-          <label>
-            <input id="avatar-text" type="text" name="avatarInput" placeholder="Ссылка на картинку" class="avatar popup__input popup__subtitle avatar-name-input" required>
-            <span id="avatar-error" class="avatar-error popup__error"></span>
-          </label>
-          <button type="submit" name="save-avatar" class="popup__button popup__save-avatar-button">Сохранить</button>
-        </form>
-        <button type="button" class="popup__close-button"></button>
-      </div>
-    </section>
     <section class="popup profile-popup">
       <div class="popup__container">
         <h2 class="title popup__title">Редактировать профиль</h2>
@@ -56,6 +43,19 @@
             <span id="job-error" class="job-error popup__error popup__error_position_bottom"></span>
           </label>
           <button type="submit" name="save" class="popup__button popup__save-button">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </section>
+    <section class="popup update-avatar-popup">
+      <div class="popup__container popup__container_min-height">
+        <h2 class="title popup__title popup__title_avatar-form">Обновить аватар</h2>
+        <form name="avatar" class="popup__form popup__form-container submit-avatar-form-handler-save" novalidate>
+          <label>
+            <input id="avatar" type="text" name="avatarInput" placeholder="Ссылка на картинку" class="avatar popup__input popup__subtitle avatar-name-input" minlength="2" maxlength="40" required>
+            <span id="avatar-error" class="avatar-error popup__error"></span>
+          </label>
+          <button type="submit" name="save-avatar" class="popup__button popup__save-avatar-button">Сохранить</button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
@@ -74,11 +74,11 @@
         <h2 class="title popup__title popup__title_item-form">Новое место</h2>
         <form name="add" class="popup__form popup__form-container submit-profile-form-handler-add" novalidate>
           <label>
-            <input id="name" type="text" name="itemNameInput" class="name popup__input popup__subtitle item-name-input" placeholder="Название" minlength="2" maxlength="40" required>
+            <input id="name" type="text" name="name" class="name popup__input popup__subtitle item-name-input" placeholder="Название" minlength="2" maxlength="40" required>
             <span id="name-error" class="name-error popup__error"></span>
           </label>
           <label>
-            <input id="link" type="url" name="itemLinkInput" class="link popup__input popup__subtitle popup__subtitle_margin_small item-link-input" placeholder="Ссылка на картинку" required>
+            <input id="link" type="url" name="link" class="link popup__input popup__subtitle popup__subtitle_margin_small item-link-input" placeholder="Ссылка на картинку" required>
             <span id="link-error" class="link-error popup__error popup__error_position_bottom"></span>
           </label>
           <button type="submit" name="create" class="popup__button popup__create-button">Создать</button>

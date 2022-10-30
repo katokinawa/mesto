@@ -33,7 +33,7 @@ export default class Card {
  // По клику мусорного ведра - карточка удаляется
   handleClickDelete() {
     this._element.remove();
-    this._element =  null;
+    this._element = null;
   }
 
   // По клику кнопки лайк, ставится лайк
@@ -90,7 +90,7 @@ export default class Card {
       this._handleClickImgOpenFullscreen();
     });
     this._trash.addEventListener('click', () => {
-      this._handleClickDelete();
+      this._handleTrashClick();
     });
     this._like.addEventListener('click', () => {
       this._handleClickLike();

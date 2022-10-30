@@ -3,9 +3,7 @@
   height: 123px;
   margin-bottom: 8px;
   border-radius: 50%;
-  background-image: url(../../../images/profile-avatar.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+  object-fit: cover;
   position: relative;
   cursor: pointer;
   transition: opacity 0.5s ease;

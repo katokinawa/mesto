@@ -14,15 +14,15 @@ export default class FormValidator {
   // Показываем ошибку
   _showError(input) {
     const error = this._validationElement.querySelector(`.${input.id}-error`);
-    error.classList.add(this._errorClass);
-    error.classList.add(this.inputErrorClass);
+    input.classList.add(this._inputErrorClass);
     error.textContent = input.validationMessage;
+    error.classList.add(this._errorClass);
   };
   // Убираем ошибку
   _closeError(input) {
     const error = this._validationElement.querySelector(`.${input.id}-error`);
     error.classList.remove(this._errorClass);
-    error.classList.remove(this.inputErrorClass);
+    input.classList.remove(this._inputErrorClass);
     error.textContent = '';
   };
 

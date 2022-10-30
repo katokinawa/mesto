@@ -74,7 +74,7 @@ function createCard(cardInfo) {
       cardElement.setLikeInfo(obj.likes);
     })
     .catch((err) => {
-      console.log('Ошибка удаление лайка', err);
+      console.log('Ошибка удаления лайка', err);
   })},
 
   handleTrashClick: () => {
@@ -97,9 +97,10 @@ popupWithImage.setEventListeners(); // слушатели
 const popupAdd = new PopupWithForm({
   popupSelector: '.photo-item-popup', // это селектор
   submitProfileFormHandler: (cardData) => { // колбэк сабмита формы
+    console.log(cardData)
     return api.generateCard(cardData.name, cardData.link)
     .then((data) => {
-      cardSection.addItem(generateCard(data));
+      cardSection.addItem(createCard(data));
     })
     .catch((err) => {
       console.log('Ошибка при добавлении карточки', err);
@@ -112,7 +113,7 @@ popupAdd.setEventListeners(); // слушатели
 // Слушатель открывает попап и делает кнопку добавления недоступной, также очищает поля
 addButton.addEventListener('click', () => {
   popupAdd.open();
-  const formAdd = popupAdd.getformPopup();
+  const formAdd = popupAdd.getFormPopup();
   formValidator[formAdd.getAttribute('name')].validityReset();
 });
 
@@ -141,7 +142,7 @@ popupEdit.setEventListeners(); // слушатели
 // Слушатель, который открывает попап изменения профиля и подставляет "старые" значения в поля ввода
 editButton.addEventListener('click', () => {
   popupEdit.open();
-  const formEdit = popupEdit.getformPopup();
+  const formEdit = popupEdit.getFormPopup();
   const el = userInfo.getUserInfo();
   nameInput.value= el.name;
   jobInput.value= el.job;
@@ -151,7 +152,7 @@ editButton.addEventListener('click', () => {
 editAvatar.addEventListener('click', () => {
   popupAvatar.open();
   const formAvatar = popupAvatar.getFormPopup();
-  formValidator[ formAvatar.getAttribute('name') ].resetValidation()
+  formValidator[formAvatar.getAttribute('name')].validityReset()
 });
 
 const popupAvatar = new PopupWithForm({
@@ -174,7 +175,7 @@ const popupConfirm = new PopupWithForm({
   submitProfileFormHandler: ()  => {
     return api.deleteCard(cardId)
     .then(() => {
-      cardForDelete.handleClickDelete();
+      cardForTrash.handleClickDelete();
     })
     .catch((err) => {
       console.log('Ошибка при подтверждении удаления карточки', err);
