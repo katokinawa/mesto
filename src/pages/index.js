@@ -51,7 +51,7 @@ function createCard(cardInfo) {
   },
 
   handleAddLike: () => {
-    api.addLikeCard(cardInfo._id)
+    api.LikeCard(cardInfo._id)
     .then(obj => {
       cardElement.setLikeInfo(obj.likes);
     })
@@ -60,7 +60,7 @@ function createCard(cardInfo) {
   })},
 
   handleRemoveLike: () => {
-    api.removeLikeCard(cardInfo._id)
+    api.LikeCard(cardInfo._id)
     .then(obj => {
       cardElement.setLikeInfo(obj.likes);
     })
@@ -71,7 +71,7 @@ function createCard(cardInfo) {
   handleTrashClick: () => {
     popupConfirmForm.open(cardInfo);
     cardId = cardInfo._id;
-    cardForDelete = cardElement;
+    cardForTrash = cardElement;
   }},
   userId
   );
