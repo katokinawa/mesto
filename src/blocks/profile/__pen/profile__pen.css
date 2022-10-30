@@ -1,0 +1,9 @@
+.profile__pen {
+  position: absolute;
+  top: 205px;
+  left: 315px;
+  width: 26px;
+  height: 26px;
+  background-image: url(../../../images/pen.svg);
+
+}
