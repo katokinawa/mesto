@@ -36,11 +36,11 @@ export default class Api {
       return this._getResponse(res);
     });
   }
-  setUserAvatar(item) {
+  setUserAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       headers: this._header,
       method: "PATCH",
-      body: JSON.stringify({ item }),
+      body: JSON.stringify({ avatar }),
     }).then((res) => {
       return this._getResponse(res);
     });

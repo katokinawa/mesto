@@ -6,7 +6,7 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
-import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig, nameInput, jobInput, apiOptions } from "../utils/constants.js";
+import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig, nameInput, jobInput, editAvatar, apiOptions  } from "../utils/constants.js";
 import "./index.css"
 
 let userId = '';
@@ -34,14 +34,13 @@ Promise.all(promises)
     userInfo.setUserId(userData);
     userId = userData._id
     cardSection.renderItems(CardsData);
-    console.log(CardsData)
   })
   .catch((err) => {
     console.log(`${err}`)
   });
 
 // Валидация
-function enableValidity(el) {
+const enableValidity = (el) => {
   const form = Array.from(document.querySelectorAll(el.formSelector))
   form.forEach((form) => {
     const validator = new FormValidator(el, form)
@@ -149,11 +148,18 @@ editButton.addEventListener('click', () => {
   formValidator[formEdit.getAttribute('name')].validityReset();
 });
 
+editAvatar.addEventListener('click', () => {
+  popupAvatar.open();
+  const formAvatar = popupAvatar.getFormPopup();
+  formValidator[ formAvatar.getAttribute('name') ].resetValidation()
+});
+
 const popupAvatar = new PopupWithForm({
   popupSelector: '.update-avatar-popup',
   submitProfileFormHandler: (data)  => {
     return api.setUserAvatar(data.avatar)
-    .then(data => {
+    .then((data) => {
+
       userInfo.setUserAvatar(data);
     })
     .catch((err) => {

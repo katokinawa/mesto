@@ -67,7 +67,7 @@ export default class Card {
     this._imgCardLink = this._element.querySelector('.photo-flex__image');
     this._like = this._element.querySelector('.photo-flex__like-button');
     this._trash = this._element.querySelector('.photo-flex__trash');
-    this._likeCount = this._element.querySelector('.photo__like-count');
+    this._likeCount = this._element.querySelector('.photo-flex__like-count');
     this._imgCardName.textContent = this._imageNameCard;
     this._imgCardLink.src = this._imageLinkCard;
     this._imgCardLink.alt = this._imageNameCard;
