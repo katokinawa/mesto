@@ -4,11 +4,31 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js'
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
-import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig, nameInput, jobInput } from "../utils/constants.js";
+import { initialCards, photoFlexItem, editButton, addButton, enableValidationConfig, nameInput, jobInput, apiOptions } from "../utils/constants.js";
 import "./index.css"
 
+let userId = '';
+let cardId = '';
+let cardForTrash = '';
+
+const api = new Api(apiOptions);
+
 const formValidator = new Object();
+
+const promises = [api.getUserInfo(), api.getInitialCards()]
+// Передаём массив с промисами методу Promise.all
+Promise.all(promises)
+  .then(([userData, CardsData]) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setUserId(userData);
+    userId = userData._id
+    cardsList.renderItems(CardsData);
+  })
+  .catch((err) => {
+    console.log(`${err}`)
+  });
 
 // Валидация
 function enableValidity(el) {
@@ -25,23 +45,48 @@ enableValidity(enableValidationConfig);
 
 // Создание карточек
 function createCard(cardInfo) {
-  const cardElement = new Card(cardInfo, '#photo-template', () => {
-    {popupWithImage.open(cardInfo)}
-  }).generateCard();
+  const cardElement = new Card(cardInfo, '#photo-template', {
+  handleCardClick: () => {
+    popupWithImage.open(cardInfo).generateCard();
+  },
+
+  handleAddLike: () => {
+    api.addLikeCard(cardInfo._id)
+    .then(obj => {
+      cardElement.setLikeInfo(obj.likes);
+    })
+    .catch((err) => {
+      console.log('Ошибка при лайке', err);
+  })},
+
+  handleRemoveLike: () => {
+    api.removeLikeCard(cardInfo._id)
+    .then(obj => {
+      cardElement.setLikeInfo(obj.likes);
+    })
+    .catch((err) => {
+      console.log('Ошибка удаление лайка', err);
+  })},
+
+  handleTrashClick: () => {
+    popupConfirmForm.open(cardInfo);
+    cardId = cardInfo._id;
+    cardForDelete = cardElement;
+  }},
+  userId
+  );
 
   return cardElement;
 };
 
 // Первоначальные карточки
 const cardSection = new Section({
-  items: initialCards, // это массив данных, которые нужно добавить на страницу при инициализации класса
-  renderer: (data) => { // функция, которая отвечает за создание и отрисовку данных на странице.
+    renderer: (data) => { // функция, которая отвечает за создание и отрисовку данных на странице.
     cardSection.addItem(createCard(data)); // добавялем на сайт
     },
   },
   photoFlexItem // селектор контейнера, в который нужно добавлять созданные элементы.
 );
-cardSection.renderItems();
 
 // Попап с картинкой
 const popupWithImage = new PopupWithImage('.photo-fullscreen-popup')
@@ -52,8 +97,14 @@ popupWithImage.setEventListeners(); // слушатели
 const popupAdd = new PopupWithForm({
   popupSelector: '.photo-item-popup', // это селектор
   submitProfileFormHandler: (data) => { // колбэк сабмита формы
-    cardSection.addItem(createCard({name: data.itemNameInput, link: data.itemLinkInput})); // добавляем на сайт
-    },
+    return api.generateCard(data.itemNameInput, data.itemLinkInput)
+    .then((data) => {
+      cardSection.addItem(generateCard(data));
+    })
+    .catch((err) => {
+      console.log('Ошибка при добавлении карточки', err);
+    })
+  },
 });
 popupAdd.setEventListeners(); // слушатели
 
@@ -65,18 +116,27 @@ addButton.addEventListener('click', () => {
   formValidator[formAdd.getAttribute('name')].validityReset();
 });
 
-// Попап с редактированием профиля
-const popupEdit = new PopupWithForm({
-  popupSelector: '.profile-popup',
-  submitProfileFormHandler
-});
-popupEdit.setEventListeners(); // слушатели
-
 // Информация о пользователе
 const userInfo = new UserInfo({
   name: '.profile__title',
-  job: '.profile__subtitle'
+  job: '.profile__subtitle',
+  avatar: '.profile__avatar'
 });
+
+// Попап с редактированием профиля
+const popupEdit = new PopupWithForm({
+  popupSelector: '.profile-popup',
+  submitProfileFormHandler: (data) => {
+    return api.setUserInfo(data.name, data.job)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+    })
+    .catch((err) => {
+      console.log('Ошибка при редактировании профиля', err)
+    })
+  }
+});
+popupEdit.setEventListeners(); // слушатели
 
 // Слушатель, который открывает попап изменения профиля и подставляет "старые" значения в поля ввода
 editButton.addEventListener('click', () => {
@@ -88,7 +148,30 @@ editButton.addEventListener('click', () => {
   formValidator[formEdit.getAttribute('name')].validityReset();
 });
 
-// Функция сабмита, которая обращается к методу класса userInfo.setUserInfo и задаёт имя и работу
-function submitProfileFormHandler(el){
-  userInfo.setUserInfo(el.nameInput, el.jobInput);
-}
+const popupAvatar = new PopupWithForm({
+  popupSelector: '.update-avatar-popup',
+  submitProfileFormHandler: (data)  => {
+    return api.setUserAvatar(data.avatar)
+    .then(data => {
+      userInfo.setUserAvatar(data);
+    })
+    .catch((err) => {
+      console.log('Ошибка при редактировании аватара', err);
+    })
+  },
+});
+popupAvatar.setEventListeners();
+
+const popupConfirm = new PopupWithForm({
+  popupSelector: '.confirm-popup',
+  submitProfileFormHandler: ()  => {
+    return api.deleteCard(cardId)
+    .then(() => {
+      cardForDelete.handleClickDelete();
+    })
+    .catch((err) => {
+      console.log('Ошибка при подтверждении удаления карточки', err);
+    })
+  },
+});
+popupConfirm.setEventListeners();

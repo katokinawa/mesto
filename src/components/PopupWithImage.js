@@ -6,7 +6,7 @@ export default class PopupWithImage extends Popup {
     this._imageModal = this._popup.querySelector('.popup__image');
     this._imageModalTitle = this._popup.querySelector('.popup__title-image');
   }
-  // вставляем в попап с фуллскрин картинкой его тайтл, алт, и саму картинку
+  // вставляем в попап с фуллскрин картинкой его тайтл, альт, и саму картинку
   // Также перезаписываем родительский метод
   open(element) {
     super.open()

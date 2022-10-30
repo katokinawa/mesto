@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor({name, job}) {
+  constructor({name, job, avatar}) {
     this._name = document.querySelector(name);
     this._job = document.querySelector(job);
+    this._avatar = document.querySelector(avatar);
   }
 
   // Получаем имя и работу
@@ -12,8 +13,22 @@ export default class UserInfo {
     }
   }
   // Задаём имя и работу
-  setUserInfo(name, job) {
+  setUserInfo(name, job, avatar) {
     this._name.textContent = name;
     this._job.textContent = job;
+    this._avatar.src = avatar;
+  }
+
+  setUserId(data) {
+    return formData._id;
+  }
+
+  getUserId() {
+    return this._id;
+  }
+
+  setUserAvatar(data) {
+    this._avatar.src = data.avatar;
   }
 }
+
