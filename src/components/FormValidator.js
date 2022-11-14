@@ -19,7 +19,7 @@ export default class FormValidator {
     error.classList.add(this._errorClass);
   };
   // Убираем ошибку
-  _closeError(input) {
+  _hideError(input) {
     const error = this._validationElement.querySelector(`.${input.id}-error`);
     error.classList.remove(this._errorClass);
     input.classList.remove(this._inputErrorClass);
@@ -28,11 +28,11 @@ export default class FormValidator {
 
   // Проверяем валидацию и по итогу показываем или убираем ошибку
   _checkValidity(el) {
-    this._closeError(el);
+    this._hideError(el);
     if (!el.validity.valid) {
       this._showError(el)
     } else {
-      this._closeError(el)
+      this._hideError(el)
     };
   };
 
@@ -55,9 +55,9 @@ export default class FormValidator {
   };
 
  // Очищаем инпуты от ошибок
-  validityReset() {
+  resetValidation() {
     this._inputs.forEach((el) => {
-      this._closeError(el);
+      this._hideError(el);
     });
     this._setButtonStateSave();
   };

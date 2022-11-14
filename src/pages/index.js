@@ -113,7 +113,7 @@ popupAdd.setEventListeners(); // слушатели
 addButton.addEventListener('click', () => {
   popupAdd.open();
   const formAdd = popupAdd.getFormPopup();
-  formValidator[formAdd.getAttribute('name')].validityReset();
+  formValidator[formAdd.getAttribute('name')].resetValidation();
 });
 
 // Информация о пользователе
@@ -144,21 +144,21 @@ editButton.addEventListener('click', () => {
   const formEdit = popupEdit.getFormPopup();
   const data = userInfo.getUserInfo();
   popupEdit.setInputValues(data);
-  formValidator[formEdit.getAttribute('name')].validityReset();
+  formValidator[formEdit.getAttribute('name')].resetValidation();
 });
 
 editAvatar.addEventListener('click', () => {
   popupAvatar.open();
   const formAvatar = popupAvatar.getFormPopup();
-  formValidator[formAvatar.getAttribute('name')].validityReset()
+  formValidator[formAvatar.getAttribute('name')].resetValidation()
 });
 
 const popupAvatar = new PopupWithForm({
   popupSelector: '.update-avatar-popup',
-  submitProfileFormHandler: (data)  => {
-    return api.setUserAvatar(data.avatar)
+  submitProfileFormHandler: (userData) => {
+    return api.setUserAvatar(userData.avatar)
     .then((data) => {
-      userInfo.setUserAvatar(data);
+      userInfo.setUserInfo(data);
     })
     .catch((err) => {
       console.log('Ошибка при редактировании аватара', err);
